@@ -10,7 +10,7 @@ class Game:
     
     def start_game(self):
         self.running: bool = True
-
+        
         while self.running:
             continue
 
