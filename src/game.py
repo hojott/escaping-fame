@@ -5,7 +5,7 @@ class Game:
     def __init__(self):
         pygame.init()
         self.screen: tuple = pygame.display.set_mode(SCREEN_SIZE)
-        self.state = "menu"
+        self.state: str = "menu"
 
         self.start_game()
     
