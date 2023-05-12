@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import src.game
+from src.game import Game
 
 if __name__ == '__main__':
-    src.game.Game()
+    game = Game()
