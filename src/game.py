@@ -13,7 +13,7 @@ class Game:
         self.running: bool = True
 
         clock = pygame.time.Clock()
-        
+
         while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
