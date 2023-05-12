@@ -6,10 +6,11 @@ class Game:
         pygame.init()
         self.screen: tuple = pygame.display.set_mode(SCREEN_SIZE)
 
-        self.running: bool = True
-        self.tick()
+        self.start_game()
     
-    def tick(self):
+    def start_game(self):
+        self.running: bool = True'
+        
         while self.running:
             continue
 
