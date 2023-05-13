@@ -16,6 +16,7 @@ class Game:
         self.state: str = "menu"
         self.world: World = None
         self.battle: Battle = None
+        self.player: Player = None
 
         self.start_game()
 
@@ -50,6 +51,8 @@ class Game:
 
                 if keys[pygame.K_ESCAPE]:
                     self.load_menu()
+                if keys[pygame.K_0]:
+                    self.start_battle()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -57,13 +60,13 @@ class Game:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.state == "menu":
                         if mouse_pos[0] > 215 and mouse_pos[0] < 785:
-                            if mouse_pos[1] > 550 and mouse_pos[1] < 660:
+                            if mouse_pos[1] > 350 and mouse_pos[1] < 460:
                                 self.load_game()
-                            elif mouse_pos[1] > 700 and mouse_pos[1] < 810:
+                            elif mouse_pos[1] > 500 and mouse_pos[1] < 610:
                                 self.running = False
 
                     elif self.state == "battle":
-                        if self.battle.turn % 2 == 0:
+                        if self.battle.turn % 3 != 1:
                             self.battle.switchTurn()
                         else:
                             for i, textbox in enumerate(self.battle.textbox_rects):
