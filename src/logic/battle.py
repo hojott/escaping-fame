@@ -27,7 +27,7 @@ class Battle:
         elif len(dialogs[3]) > 0:
             self.dialog = dialogs[3].pop()
         elif len(dialogs[0]) > 0 or len(dialogs[1]) > 0 or len(dialogs[2]) > 0:
-            self.dialog = random.choice(dialogs[2][0] if len(dialogs[2]) > 0 else dialogs[1][0] if len(dialogs[1]) > 0 else dialogs[0][0] if len(dialogs[0]) > 0 else [None])
+            self.dialog = random.choice(dialogs[2][0] if len(dialogs[2]) > 0 else dialogs[1][0] if len(dialogs[1]) > 0 else dialogs[0][0] if len(dialogs[0]) > 0 else [None, None])
         else:
             print("no more dialogs")
             return
