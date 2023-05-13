@@ -46,18 +46,33 @@ for i in range(1, 6):
     tiles[f"sw{i}"] = pygame.image.load(f"src/graphics/tiles/sw{i}.png")
     tiles[f"sw{i}"] = pygame.transform.scale(tiles[f"sw{i}"], TILE_SIZE)
 
-def drawMenu(screen):
+stressbar = pygame.image.load("src/graphics/stressbar.png")
+stressbar = pygame.transform.flip(stressbar, False, True)
+
+stresspoint = pygame.image.load("src/graphics/stresspoint.png")
+
+def drawMenu(game):
+    screen = game.screen
+    
     screen.blit(mainmenu, (0, 0))
     screen.blit(start_game, (215, 350))
     screen.blit(exit, (215, 500))
+
+def drawUI(game):
+    screen = game.screen
+
+    screen.blit(stressbar, (169, 30))
+    for i in range(game.player.stress):
+        screen.blit(stresspoint, (179 + i * 64.5, 88))
 
 def drawBattle(game, battle):
     screen = game.screen
 
     screen.fill((255, 255, 0))
-    screen.blit(mainCharacter_battle, (0, 230))
-    screen.blit(battle.enemy, (500, 50))
+    screen.blit(mainCharacter_battle, (-80, 230))
+    screen.blit(battle.enemy, (600, 100))
     screen.blit(textbox, (100, 780))
+    drawUI(game)
 
     if battle.turn % 3 == 1:
         for i in range(4):
@@ -79,7 +94,9 @@ def renderText(text, coords, game):
     text = game.font.render(text, False, (0, 0, 0))
     game.screen.blit(text, coords)
 
-def drawWorld(screen, map_num: int, world_pos: list) -> list[int, int]:
+def drawWorld(game, map_num: int, world_pos: list) -> list[int, int]:
+    screen = game.screen
+
     screen.fill((255, 182, 193))
     
     # Draw in all the tiles from map.py
@@ -93,8 +110,12 @@ def drawWorld(screen, map_num: int, world_pos: list) -> list[int, int]:
 
     return MAP_SIZE
 
-def drawPlayer(screen, pos_on_screen: list):
+def drawPlayer(game, pos_on_screen: list):
+    screen = game.screen
+
     screen.blit(player, tuple(pos_on_screen))
 
-def drawHuman(screen, position):
+def drawHuman(game, position):
+    screen = game.screen
+
     screen.blit(human, tuple(position))
