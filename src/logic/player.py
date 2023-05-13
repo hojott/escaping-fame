@@ -14,9 +14,11 @@ class Player:
         self.stress: int = 5
         self.time: float = 0.0
 
+        self.game = game
+
         # Same coordinates as Minecraft: east is positive x and south is positive y
         self.velocity = [0, 0]
-        drawPlayer(self.game.screen, self.pos_on_screen)
+        drawPlayer(self.game, self.pos_on_screen)
 
     def endTurn(self, stress: int):
         self.time += 0.5 + stress * 0.3
@@ -26,7 +28,7 @@ class Player:
         self.input()
         self.inputnt()
         self.move_player()
-        drawPlayer(self.game.screen, self.pos_on_screen)
+        drawPlayer(self.game, self.pos_on_screen)
     
     def calculate_movement(self) -> list[float, float]:
         movement = [float, float]
