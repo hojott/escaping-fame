@@ -31,10 +31,19 @@ player = pygame.transform.scale(player, PLAYER_SIZE)
 mainmenu = pygame.image.load("src/graphics/mainmenu.png")
 mainmenu = pygame.transform.scale(mainmenu, SCREEN_SIZE)
 
-def drawMenu(screen):
+stressbar = pygame.image.load("src/graphics/stressbar.png")
+stressbar = pygame.transform.scale(stressbar, SCREEN_SIZE)
+stressbar = pygame.transform.flip(stressbar, True, False)
+
+def drawMenu(game):
+    screen = game.screen
+    
     screen.blit(mainmenu, (0, 0))
     screen.blit(start_game, (215, 350))
     screen.blit(exit, (215, 500))
+
+def drawUI(game):
+    game.screen.blit(stressbar, (100, 50))
 
 def drawBattle(game, battle):
     screen = game.screen
@@ -64,8 +73,11 @@ def renderText(text, coords, game):
     text = game.font.render(text, False, (0, 0, 0))
     game.screen.blit(text, coords)
 
-def drawWorld(screen):
+def drawWorld(game):
+    screen = game.screen
+
     screen.fill((255, 182, 193))
 
-def drawPlayer(screen, pos_on_screen: list):
+def drawPlayer(game, pos_on_screen: list):
+    screen = game.screen
     screen.blit(player, tuple(pos_on_screen))
