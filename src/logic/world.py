@@ -14,5 +14,4 @@ class World:
         self.WORLD_SIZE = maps[0][0]
 
     def tick(self):
-        drawWorld(self.game, map_num = 0, world_pos = self.position)
         self.WORLD_SIZE = maps[0][0]

@@ -56,16 +56,37 @@ def drawMenu(game):
     screen.blit(start_game, (215, 350))
     screen.blit(exit, (215, 500))
 
+def drawPause(game):
+    screen = game.screen
+
+    pause_overlay = pygame.Surface(SCREEN_SIZE)
+    pause_overlay.set_alpha(128)
+    pause_overlay.fill((0, 0, 0))
+    
+    screen.blit(pause_overlay, (0, 0))
+
 def drawUI(game):
     screen = game.screen
 
-    screen.blit(stressbar, (169, 30))
+    alpha = 255
+    if game.player.pos_on_screen[0] < 900 and game.player.pos_on_screen[0] > 100:
+        if game.player.pos_on_screen[1] < 200:
+            alpha = 80
+
+    stressbar.set_alpha(alpha)  # Set the alpha value of the stress bar
+    for i in range(game.player.stress):
+        stresspoint.set_alpha(alpha)  # Set the alpha value of each stress point
+
+    time = game.player.time
+    timebar_alpha = alpha if time > 0 else 0  # Set the alpha value of the time bar based on 'time' variable
+
+    screen.blit(stressbar.convert_alpha(), (169, 30))
     for i in range(game.player.stress):
         screen.blit(stresspoint, (179 + i * 64.5, 88))
 
-    time = game.player.time
     timebar = pygame.Rect(240, 51, time * 26, 32)
-    pygame.draw.rect(screen, (173, 216, 230, 100), timebar)
+    pygame.draw.rect(screen, (173, 216, 230, timebar_alpha), timebar)
+
 
 def drawBattle(game, battle):
     screen = game.screen
@@ -106,9 +127,12 @@ def drawWorld(game, map_num: int, world_pos: list) -> list[int, int]:
         if y_pos == -1:
             # First line of list is map size (yes it has weird name)
             MAP_SIZE = horizontal_stripe
-        else:    
+        else:
             for x_pos, vertical_point in enumerate(horizontal_stripe):
                 screen.blit(tiles[vertical_point], (-world_pos[0] + 500*x_pos, -world_pos[1] + 500*y_pos))
+
+    drawUI(game)
+
     return MAP_SIZE
 
 def drawPlayer(game, pos_on_screen: list):
