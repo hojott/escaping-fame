@@ -92,7 +92,7 @@ class Game:
 
     def load_game(self):
         self.state = "game"
-        self.world = World(self)
+        self.world = World(self, map_num = 0)
         self.player = Player(self, pos_on_map = [10, 10], pos_on_screen = [10, 10])
 
     def start_battle(self):
