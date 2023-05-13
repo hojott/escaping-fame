@@ -1,4 +1,6 @@
 import pygame
+
+# Use relative imports because running app from main.py
 from .constants import *
 from .graphics import *
 
@@ -6,7 +8,7 @@ class Game:
     def __init__(self):
         pygame.init()
         self.screen: tuple = pygame.display.set_mode(SCREEN_SIZE)
-        self.state = "menu"
+        self.state: str = "menu"
 
         self.start_game()
 
