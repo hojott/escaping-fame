@@ -4,7 +4,7 @@ from ..graphics import drawWorld
 from ..constants import *
 from ..map import maps
 
-from .entity import *
+from .humans import *
 
 class World:
     def __init__(self, game, map_num: int):
