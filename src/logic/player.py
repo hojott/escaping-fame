@@ -46,6 +46,7 @@ class Player:
     
     def move_player(self):
         movement = self.calculate_movement()
+        # World and humans move around player, to make the map visible only sometimes
 
         # Horizontal movement
         if movement[0] >= 0:
@@ -54,6 +55,8 @@ class Player:
             else:
                 self.pos_on_map[0] += movement[0]
                 self.game.world.position[0] += movement[0]
+                for human in self.game.world.humans:
+                    human.pos_on_screen[0] -= movement[0]
             
         if movement[0] <= 0:
             if self.game.world.position[0] <= 0 or self.pos_on_screen[0] > 475:
@@ -61,6 +64,8 @@ class Player:
             else:
                 self.pos_on_map[0] += movement[0]
                 self.game.world.position[0] += movement[0]
+                for human in self.game.world.humans:
+                    human.pos_on_screen[0] -= movement[0]
 
         # Vertical movement
         if movement[1] >= 0:
@@ -69,6 +74,8 @@ class Player:
             else:
                 self.pos_on_map[1] += movement[1]
                 self.game.world.position[1] += movement[1]
+                for human in self.game.world.humans:
+                    human.pos_on_screen[1] -= movement[1]
         
         if movement[1] <= 0:
             if self.game.world.position[1] <= 0 or self.pos_on_screen[1] > 475:
@@ -76,6 +83,8 @@ class Player:
             else:
                 self.pos_on_map[1] += movement[1]
                 self.game.world.position[1] += movement[1]
+                for human in self.game.world.humans:
+                    human.pos_on_screen[1] -= movement[1]
 
     def input(self) -> None:
         keys = pygame.key.get_pressed()
