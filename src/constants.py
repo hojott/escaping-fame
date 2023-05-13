@@ -1,1 +1,2 @@
 SCREEN_SIZE: tuple = (1000, 1000)
+MAX_VELOCITY: int = 5

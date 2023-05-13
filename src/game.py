@@ -1,4 +1,6 @@
 import pygame
+
+# Use relative imports because running app from main.py
 from .constants import *
 
 class Game:
