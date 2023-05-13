@@ -1,5 +1,6 @@
 import pygame
-import random
+from random import choice, randint
+from math import floor
 
 from ..graphics import textbox_small, enemies
 from ..dialogs import dialogs
@@ -9,44 +10,49 @@ class Battle:
         self.game = game
         self.textbox_rects = [pygame.Rect(250, 200 + 120 * i, textbox_small.get_width(), textbox_small.get_height()) for i in range(4)]
         self.turn = 0
-        self.questions = random.randint(2, 4)
-        self.dialog = None
+        self.questions = randint(2, 4)
+        self.dialogs = []
         self.player_pick = None
-        self.enemy = enemies[random.randint(0, 2)]
-        self.generateDialog()
+        self.enemy = enemies[randint(0, 2)]
+        self.generateDialogs()
 
-    def generateDialog(self):
+    def generateDialogs(self):
         player = self.game.player
 
-        if player.stress < 4 and len(dialogs[0]) > 0:
-            self.dialog = dialogs[0].pop()
-        elif player.stress < 7 and len(dialogs[1]) > 0:
-            self.dialog = dialogs[1].pop()
-        elif player.stress < 10 and len(dialogs[2]) > 0:
-            self.dialog = dialogs[2].pop()
-        elif len(dialogs[3]) > 0:
-            self.dialog = dialogs[3].pop()
-        elif len(dialogs[0]) > 0 or len(dialogs[1]) > 0 or len(dialogs[2]) > 0:
-            self.dialog = random.choice(dialogs[2][0] if len(dialogs[2]) > 0 else dialogs[1][0] if len(dialogs[1]) > 0 else dialogs[0][0] if len(dialogs[0]) > 0 else [None, None])
-        else:
-            print("no more dialogs")
-            return
-        if self.dialog == None:
-            print("no more dialogs")
-            return
+        all = dialogs[0] + dialogs[1] + dialogs[2] + dialogs[3]
+
+        if len(all) < self.questions:
+            raise ValueError("Ran out of dialogs")
+
+        for _ in range(self.questions):
+            if player.stress < 4 and len(dialogs[0]) > 0:
+                self.dialogs.append(dialogs[0].pop())
+            elif player.stress < 7 and len(dialogs[1]) > 0:
+                self.dialogs.append(dialogs[1].pop())
+            elif player.stress < 10 and len(dialogs[2]) > 0:
+                self.dialogs.append(dialogs[2].pop())
+            elif len(dialogs[3]) > 0:
+                self.dialogs.append(dialogs[3].pop())
+            elif len(all) > 0:
+                chosen_dialog = choice(all)
+                self.dialogs.append(chosen_dialog)
+                for dialog_group in dialogs:
+                    if chosen_dialog in dialog_group:
+                        dialog_group.remove(chosen_dialog)
+                        break
+            else:
+                print("no more dialogs")
 
     def switchTurn(self):
         self.turn += 1
 
     def pickDialog(self, dialogIndex):
-        self.player_pick = self.dialog["answers"][dialogIndex]
+        self.player_pick = self.dialogs[floor(self.turn / 3)]["answers"][dialogIndex]
         self.game.player.endTurn(self.player_pick[1])
         self.switchTurn()
-        self.generateDialog()
         self.questions -= 1
         if self.questions == 0:
             self.endBattle()
 
     def endBattle(self):
-        print("battle ends")
         self.game.state = "game"
