@@ -1,6 +1,6 @@
 import pygame
 
-from .constants import *
+from ..constants import *
 
 class Player:
     def __init__(self, pos_on_map: tuple, pos_on_screen: tuple) -> None:
