@@ -1,6 +1,7 @@
 import pygame
 from .constants import *
 from .map import maps
+from math import floor
 
 exit = pygame.image.load("src/graphics/exit.png")
 exit = pygame.transform.scale(exit, BUTTON_SIZE)
@@ -62,6 +63,10 @@ def drawUI(game):
     for i in range(game.player.stress):
         screen.blit(stresspoint, (179 + i * 64.5, 88))
 
+    time = game.player.time
+    timebar = pygame.Rect(240, 51, time * 26, 32)
+    pygame.draw.rect(screen, (173, 216, 230, 100), timebar)
+
 def drawBattle(game, battle):
     screen = game.screen
 
@@ -71,15 +76,17 @@ def drawBattle(game, battle):
     screen.blit(textbox, (100, 780))
     drawUI(game)
 
+    dialog = battle.dialogs[floor(battle.turn / 3)]
+
     if battle.turn % 3 == 1:
         for i in range(4):
             coords = (250, 200 + 120 * i)
             screen.blit(textbox_small, coords)
-            renderText(battle.dialog["answers"][i][0], (275, 232 + 120 * i), game)
+            renderText(dialog["answers"][i][0], (275, 232 + 120 * i), game)
     else:
         renderText("Click to continue...", (640, 900), game)
     if battle.turn % 3 != 2:
-        renderText(battle.dialog["dialog"], (160, 820), game)
+        renderText(dialog["dialog"], (160, 820), game)
     elif battle.player_pick[1] == 1:
         renderText("Your pick was bad, so your stress increases.", (160, 820), game)
     elif battle.player_pick[1] == 0:
