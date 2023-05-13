@@ -27,7 +27,7 @@ class Player:
     def tick(self) -> None:
         self.input()
         self.inputnt()
-        self.move()
+        self.move_player()
         drawPlayer(self.game, self.pos_on_screen)
     
     def calculate_movement(self) -> list[float, float]:

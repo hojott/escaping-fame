@@ -52,7 +52,6 @@ class Game:
                 drawBattle(self, self.battle)
 
             elif self.state == "game":
-                drawWorld(self)
                 drawUI(self)
                 self.world.tick()
 

@@ -1,11 +1,15 @@
 import pygame
 from .constants import *
+from .map import maps
 
 exit = pygame.image.load("src/graphics/exit.png")
 exit = pygame.transform.scale(exit, BUTTON_SIZE)
 
 start_game = pygame.image.load("src/graphics/start_game.png")
 start_game = pygame.transform.scale(start_game, BUTTON_SIZE)
+
+mainmenu = pygame.image.load("src/graphics/mainmenu.png")
+mainmenu = pygame.transform.scale(mainmenu, SCREEN_SIZE)
 
 mainCharacter_battle = pygame.image.load("src/graphics/mainCharacter_battle.png")
 mainCharacter_battle = pygame.transform.scale(mainCharacter_battle, CHARACTER_SIZE)
@@ -28,8 +32,16 @@ textbox_small = pygame.transform.scale(textbox, SMALL_TEXTBOX_SIZE)
 player = pygame.image.load("src/graphics/start_game.png")
 player = pygame.transform.scale(player, PLAYER_SIZE)
 
-mainmenu = pygame.image.load("src/graphics/mainmenu.png")
-mainmenu = pygame.transform.scale(mainmenu, SCREEN_SIZE)
+tiles = {}
+"""
+tiles = {
+    "sw1" = sw1-kuva
+    ...
+}
+"""
+for i in range(1, 6):
+    tiles[f"sw{i}"] = pygame.image.load(f"src/graphics/tiles/sw{i}.png")
+    tiles[f"sw{i}"] = pygame.transform.scale(tiles[f"sw{i}"], TILE_SIZE)
 
 stressbar = pygame.image.load("src/graphics/stressbar.png")
 stressbar = pygame.transform.flip(stressbar, False, True)
@@ -79,10 +91,18 @@ def renderText(text, coords, game):
     text = game.font.render(text, False, (0, 0, 0))
     game.screen.blit(text, coords)
 
-def drawWorld(game):
+def drawWorld(game, map_num: int, world_pos: list) -> list[int, int]:
     screen = game.screen
 
     screen.fill((255, 182, 193))
+    for y_pos, horizontal_stripe in enumerate(maps[map_num], -1):
+        if y_pos == -1:
+            # First line of list is map size (yes it has weird name)
+            MAP_SIZE = horizontal_stripe
+        else:    
+            for x_pos, vertical_point in enumerate(horizontal_stripe):
+                screen.blit(tiles[vertical_point], (-world_pos[0] + 500*x_pos, -world_pos[1] + 500*y_pos))
+    return MAP_SIZE
 
 def drawPlayer(game, pos_on_screen: list):
     screen = game.screen
