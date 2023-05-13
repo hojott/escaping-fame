@@ -13,6 +13,10 @@ class Game:
         pygame.font.init()
         self.font = pygame.font.SysFont('Comic Sans MS', FONT_SIZE)
         self.screen: tuple = pygame.display.set_mode(SCREEN_SIZE)
+        pygame.display.set_caption("Tulevaisuuspeli")
+        self.icon = pygame.image.load('src/graphics/start_game.png')
+        pygame.display.set_icon(self.icon)
+
         self.state: str = "menu"
         self.world: World = None
         self.battle: Battle = None
