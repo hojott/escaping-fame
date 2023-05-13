@@ -89,11 +89,11 @@ def drawUI(game):
     
     for i in range(10):
         if i < stress:
-            if i < 4:
+            if i < 3:
                 screen.blit(stresspoint3, (179 + i * 64.5, 88))
-            elif i < 7:
+            elif i < 6:
                 screen.blit(stresspoint4, (179 + i * 64.5, 88))
-            elif i < 10:
+            elif i < 9:
                 screen.blit(stresspoint5, (179 + i * 64.5, 88))
             else:
                 screen.blit(stresspoint2, (179 + i * 64.5, 88))
