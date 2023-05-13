@@ -42,7 +42,7 @@ class Player:
 
         # Horizontal movement
         if movement[0] >= 0:
-            if self.game.world.position[0] + 1000 >= WORLD_SIZE[0] or self.pos_on_screen[0] < 475:
+            if self.game.world.position[0] + 1000 >= self.game.world.WORLD_SIZE[0] or self.pos_on_screen[0] < 475:
                 self.pos_on_screen[0] += movement[0]
             else:
                 self.pos_on_map[0] += movement[0]
@@ -57,7 +57,7 @@ class Player:
 
         # Vertical movement
         if movement[1] >= 0:
-            if self.game.world.position[1] + 1000 >= WORLD_SIZE[1] or self.pos_on_screen[1] < 475:
+            if self.game.world.position[1] + 1000 >= self.game.world.WORLD_SIZE[1] or self.pos_on_screen[1] < 475:
                 self.pos_on_screen[1] += movement[1]
             else:
                 self.pos_on_map[1] += movement[1]

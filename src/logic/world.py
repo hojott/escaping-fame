@@ -9,8 +9,8 @@ class World:
         self.game = game
         self.position = [0, 0] # Map position on the screen, top-left point
 
-        drawWorld(self.game.screen)
+        # ((drawWorld returns world size))
+        self.WORLD_SIZE = drawWorld(self.game.screen, map_num = 0, world_pos = self.position)
 
     def tick(self):
-        drawWorld(self.game.screen)
-
+        self.WORLD_SIZE = drawWorld(self.game.screen, map_num = 0, world_pos = self.position)
