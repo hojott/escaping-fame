@@ -33,6 +33,9 @@ textbox_small = pygame.transform.scale(textbox, SMALL_TEXTBOX_SIZE)
 player = pygame.image.load("src/graphics/start_game.png")
 player = pygame.transform.scale(player, PLAYER_SIZE)
 
+human = pygame.image.load("src/graphics/exit.png")
+human = pygame.transform.scale(human, HUMAN_SIZE)
+
 tiles = {}
 """
 tiles = {
@@ -139,13 +142,15 @@ def drawWorld(game, map_num: int, world_pos: list) -> list[int, int]:
     screen = game.screen
 
     screen.fill((255, 182, 193))
+    
+    # Draw in all the tiles from map.py
     for y_pos, horizontal_stripe in enumerate(maps[map_num], -1):
         if y_pos == -1:
-            # First line of list is map size (yes it has weird name)
+            # First line of list is map size (yes it has weird names)
             MAP_SIZE = horizontal_stripe
         else:
             for x_pos, vertical_point in enumerate(horizontal_stripe):
-                screen.blit(tiles[vertical_point], (-world_pos[0] + 500*x_pos, -world_pos[1] + 500*y_pos))
+                screen.blit(tiles[vertical_point], (-world_pos[0] + TILE_SIZE[0]*x_pos, -world_pos[1] + TILE_SIZE[1]*y_pos))
 
     drawUI(game)
 
@@ -155,3 +160,8 @@ def drawPlayer(game, pos_on_screen: list):
     screen = game.screen
 
     screen.blit(player, tuple(pos_on_screen))
+
+def drawHuman(game, position):
+    screen = game.screen
+
+    screen.blit(human, tuple(position))
