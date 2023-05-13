@@ -10,7 +10,7 @@ class Battle:
         self.game = game
         self.textbox_rects = [pygame.Rect(250, 200 + 120 * i, textbox_small.get_width(), textbox_small.get_height()) for i in range(4)]
         self.turn = 0
-        self.questions = randint(2, 4)
+        self.questions = randint(3, 4)
         self.dialogs = []
         self.player_pick = None
         self.enemy = enemies[randint(0, 2)]
@@ -42,6 +42,19 @@ class Battle:
                         break
             else:
                 print("no more dialogs")
+        
+        for i in range(len(self.dialogs)):
+            dialog = self.dialogs[i]
+            answers = dialog["answers"]
+            new_answers = []
+            for answer in answers:
+                if isinstance(answer, tuple):
+                    new_answers.append(answer)
+                elif isinstance(answer, list):
+                    random_answer = choice(answer)
+                    new_answers.append(random_answer)
+            dialog["answers"] = new_answers
+            self.dialogs[i] = dialog
 
     def switchTurn(self):
         self.turn += 1

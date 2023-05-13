@@ -25,6 +25,7 @@ class Game:
         self.world: World = None
         self.battle: Battle = None
         self.player: Player = None
+        self.paused: bool = False
 
         self.start_game()
 
@@ -39,40 +40,21 @@ class Game:
             keys = pygame.key.get_pressed()
             mouse_pos = pygame.mouse.get_pos()
             
-            # Drawing
-            if self.state == "menu":
-                drawMenu(self)
-
-                if keys[pygame.K_0]:
-                    self.start_battle()
-                if keys[pygame.K_q]:
-                    self.running = False
-
-            elif self.state == "battle":
-                drawBattle(self, self.battle)
-
-            elif self.state == "game":
-                drawUI(self)
-                self.world.tick()
-
-                self.player.tick()
-
-                if keys[pygame.K_ESCAPE]:
-                    self.load_menu()
-                if keys[pygame.K_0]:
-                    self.start_battle()
-
-            for event in pygame.event.get():
+            events = pygame.event.get()
+            
+            for event in events:
                 if event.type == pygame.QUIT:
                     self.running = False
-                if event.type == pygame.MOUSEBUTTONDOWN:
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        self.load_pausemenu()
+                elif event.type == pygame.MOUSEBUTTONDOWN:
                     if self.state == "menu":
                         if mouse_pos[0] > 215 and mouse_pos[0] < 785:
                             if mouse_pos[1] > 350 and mouse_pos[1] < 460:
                                 self.load_game()
                             elif mouse_pos[1] > 500 and mouse_pos[1] < 610:
                                 self.running = False
-
                     elif self.state == "battle":
                         if self.battle.turn % 3 != 1:
                             self.battle.switchTurn()
@@ -81,14 +63,40 @@ class Game:
                                 if textbox.collidepoint(mouse_pos[0], mouse_pos[1]):
                                     self.battle.pickDialog(i)
 
-            pygame.display.flip()
+            if self.state == "menu":
+                drawMenu(self)
+            elif self.state == "battle":
+                drawBattle(self, self.battle)
+            elif self.state == "game":
+                drawWorld(self, 0, self.world.position)
+                drawPlayer(self, self.player.pos_on_screen)
+                drawUI(self)
 
+                if not self.paused:
+                    self.world.tick()
+                    self.player.tick()
+                    
+                    if keys[pygame.K_0]:
+                        self.start_battle()
+
+            if self.paused:
+                drawPause(self)
+
+            pygame.display.flip()
             clock.tick(60)
 
         pygame.quit()
 
     def load_menu(self):
         self.state = "menu"
+
+    def load_pausemenu(self):
+        if not self.paused:
+            self.paused = True
+            pygame.time.set_timer(pygame.USEREVENT, 0)
+        else:
+            self.paused = False
+            pygame.time.set_timer(pygame.USEREVENT, 1000 // 60)  
 
     def load_game(self):
         self.state = "game"

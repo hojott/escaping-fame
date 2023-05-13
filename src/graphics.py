@@ -51,6 +51,10 @@ stressbar = pygame.image.load("src/graphics/stressbar.png")
 stressbar = pygame.transform.flip(stressbar, False, True)
 
 stresspoint = pygame.image.load("src/graphics/stresspoint.png")
+stresspoint2 = pygame.image.load("src/graphics/stresspoint2.png")
+stresspoint3 = pygame.image.load("src/graphics/stresspoint3.png")
+stresspoint4 = pygame.image.load("src/graphics/stresspoint4.png")
+stresspoint5 = pygame.image.load("src/graphics/stresspoint5.png")
 
 def drawMenu(game):
     screen = game.screen
@@ -59,16 +63,49 @@ def drawMenu(game):
     screen.blit(start_game, (215, 350))
     screen.blit(exit, (215, 500))
 
+def drawPause(game):
+    screen = game.screen
+
+    pause_overlay = pygame.Surface(SCREEN_SIZE)
+    pause_overlay.set_alpha(128)
+    pause_overlay.fill((0, 0, 0))
+    
+    screen.blit(pause_overlay, (0, 0))
+
 def drawUI(game):
     screen = game.screen
 
-    screen.blit(stressbar, (169, 30))
+    alpha = 255
+    if game.player.pos_on_screen[0] < 900 and game.player.pos_on_screen[0] > 100:
+        if game.player.pos_on_screen[1] < 200:
+            alpha = 80
+
+    stressbar.set_alpha(alpha)  # Set the alpha value of the stress bar
     for i in range(game.player.stress):
-        screen.blit(stresspoint, (179 + i * 64.5, 88))
+        stresspoint.set_alpha(alpha)  # Set the alpha value of each stress point
 
     time = game.player.time
+    timebar_alpha = alpha if time > 0 else 0  # Set the alpha value of the time bar based on 'time' variable
+
+    screen.blit(stressbar.convert_alpha(), (169, 30))
+    stress = game.player.stress
+    
+    for i in range(10):
+        if i < stress:
+            if i < 3:
+                screen.blit(stresspoint3, (179 + i * 64.5, 88))
+            elif i < 6:
+                screen.blit(stresspoint4, (179 + i * 64.5, 88))
+            elif i < 9:
+                screen.blit(stresspoint5, (179 + i * 64.5, 88))
+            else:
+                screen.blit(stresspoint2, (179 + i * 64.5, 88))
+        else:
+            screen.blit(stresspoint, (179 + i * 64.5, 88))
+
     timebar = pygame.Rect(240, 51, time * 26, 32)
-    pygame.draw.rect(screen, (173, 216, 230, 100), timebar)
+    pygame.draw.rect(screen, (173, 216, 230, timebar_alpha), timebar)
+
 
 def drawBattle(game, battle):
     screen = game.screen
@@ -111,9 +148,11 @@ def drawWorld(game, map_num: int, world_pos: list) -> list[int, int]:
         if y_pos == -1:
             # First line of list is map size (yes it has weird names)
             MAP_SIZE = horizontal_stripe
-        else:    
+        else:
             for x_pos, vertical_point in enumerate(horizontal_stripe):
                 screen.blit(tiles[vertical_point], (-world_pos[0] + TILE_SIZE[0]*x_pos, -world_pos[1] + TILE_SIZE[1]*y_pos))
+
+    drawUI(game)
 
     return MAP_SIZE
 
