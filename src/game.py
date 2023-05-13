@@ -40,6 +40,7 @@ class Game:
 
             if self.state == "game":
                 drawWorld(self.screen)
+                self.player.tick()
 
                 if keys[pygame.K_ESCAPE]:
                     self.load_menu()
@@ -61,3 +62,5 @@ class Game:
     def load_game(self):
         self.state = "game"
         print("load_game")
+
+        self.player = Player(self.screen, pos_on_map = [10, 10], pos_on_screen = [10, 10])
