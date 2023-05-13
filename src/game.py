@@ -10,9 +10,17 @@ from .logic.player import Player
 class Game:
     def __init__(self):
         pygame.init()
+
         pygame.font.init()
         self.font = pygame.font.SysFont('Comic Sans MS', FONT_SIZE)
+
         self.screen: tuple = pygame.display.set_mode(SCREEN_SIZE)
+
+        pygame.display.set_caption("Tulevaisuuspeli")
+
+        self.icon = pygame.image.load('src/graphics/start_game.png')
+        pygame.display.set_icon(self.icon)
+
         self.state: str = "menu"
         self.world: World = None
         self.battle: Battle = None
@@ -29,7 +37,6 @@ class Game:
 
         while self.running:
             keys = pygame.key.get_pressed()
-            mouse_buttons = pygame.mouse.get_pressed()
             mouse_pos = pygame.mouse.get_pos()
             
             # Drawing
@@ -45,7 +52,7 @@ class Game:
                 drawBattle(self, self.battle)
 
             elif self.state == "game":
-                drawWorld(self.screen)
+                self.world.tick()
 
                 self.player.tick()
 
@@ -85,7 +92,7 @@ class Game:
     def load_game(self):
         self.state = "game"
         self.world = World(self)
-        self.player = Player(self.screen, pos_on_map = [10, 10], pos_on_screen = [10, 10])
+        self.player = Player(self, pos_on_map = [10, 10], pos_on_screen = [10, 10])
 
     def start_battle(self):
         self.state = "battle"
