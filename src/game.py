@@ -34,7 +34,7 @@ class Game:
             
             # Drawing
             if self.state == "menu":
-                drawMenu(self.screen)
+                drawMenu(self)
 
                 if keys[pygame.K_0]:
                     self.start_battle()
@@ -45,7 +45,8 @@ class Game:
                 drawBattle(self, self.battle)
 
             elif self.state == "game":
-                drawWorld(self.screen)
+                drawWorld(self)
+                drawUI(self)
 
                 self.player.tick()
 
@@ -85,7 +86,7 @@ class Game:
     def load_game(self):
         self.state = "game"
         self.world = World(self)
-        self.player = Player(self.screen, pos_on_map = [10, 10], pos_on_screen = [10, 10])
+        self.player = Player(self, pos_on_map = [10, 10], pos_on_screen = [10, 10])
 
     def start_battle(self):
         self.state = "battle"

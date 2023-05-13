@@ -32,8 +32,10 @@ mainmenu = pygame.image.load("src/graphics/mainmenu.png")
 mainmenu = pygame.transform.scale(mainmenu, SCREEN_SIZE)
 
 stressbar = pygame.image.load("src/graphics/stressbar.png")
-stressbar = pygame.transform.scale(stressbar, SCREEN_SIZE)
-stressbar = pygame.transform.flip(stressbar, True, False)
+stressbar = pygame.transform.flip(stressbar, False, True)
+
+stresspoint = pygame.image.load("src/graphics/stresspoint.png")
+stresspoint = pygame.transform.flip(stresspoint, False, True)
 
 def drawMenu(game):
     screen = game.screen
@@ -43,15 +45,16 @@ def drawMenu(game):
     screen.blit(exit, (215, 500))
 
 def drawUI(game):
-    game.screen.blit(stressbar, (100, 50))
+    game.screen.blit(stressbar, (169, 30))
 
 def drawBattle(game, battle):
     screen = game.screen
 
     screen.fill((255, 255, 0))
-    screen.blit(mainCharacter_battle, (0, 230))
-    screen.blit(battle.enemy, (500, 50))
+    screen.blit(mainCharacter_battle, (-80, 230))
+    screen.blit(battle.enemy, (600, 100))
     screen.blit(textbox, (100, 780))
+    drawUI(game)
 
     if battle.turn % 3 == 1:
         for i in range(4):
