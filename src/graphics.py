@@ -8,11 +8,22 @@ exit = pygame.transform.scale(exit, BUTTON_SIZE)
 start_game = pygame.image.load("src/graphics/start_game.png")
 start_game = pygame.transform.scale(start_game, BUTTON_SIZE)
 
+mainmenu = pygame.image.load("src/graphics/mainmenu.png")
+mainmenu = pygame.transform.scale(mainmenu, SCREEN_SIZE)
+
 mainCharacter_battle = pygame.image.load("src/graphics/mainCharacter_battle.png")
 mainCharacter_battle = pygame.transform.scale(mainCharacter_battle, CHARACTER_SIZE)
 
 enemy1 = pygame.image.load("src/graphics/enemy1.png")
 enemy1 = pygame.transform.scale(enemy1, CHARACTER_SIZE)
+
+enemy2 = pygame.image.load("src/graphics/enemy2.png")
+enemy2 = pygame.transform.scale(enemy2, CHARACTER_SIZE)
+
+enemy3 = pygame.image.load("src/graphics/enemy3.png")
+enemy3 = pygame.transform.scale(enemy3, CHARACTER_SIZE)
+
+enemies = [enemy1, enemy2, enemy3]
 
 textbox = pygame.image.load("src/graphics/textbox.png")
 textbox = pygame.transform.scale(textbox, TEXTBOX_SIZE)
@@ -33,26 +44,33 @@ for i in range(1, 6):
     tiles[f"sw{i}"] = pygame.transform.scale(tiles[f"sw{i}"], TILE_SIZE)
 
 def drawMenu(screen):
-    screen.fill((255, 182, 193))
-    screen.blit(start_game, (215, 550))
-    screen.blit(exit, (215, 700))
+    screen.blit(mainmenu, (0, 0))
+    screen.blit(start_game, (215, 350))
+    screen.blit(exit, (215, 500))
 
 def drawBattle(game, battle):
     screen = game.screen
 
     screen.fill((255, 255, 0))
     screen.blit(mainCharacter_battle, (0, 230))
-    screen.blit(enemy1, (500, 50))
+    screen.blit(battle.enemy, (500, 50))
     screen.blit(textbox, (100, 780))
-    renderText(battle.enemy_dialog, (160, 820), game)
 
-    if battle.turn % 2 == 0:
-        renderText("Click to continue...", (640, 900), game)
-    else:
+    if battle.turn % 3 == 1:
         for i in range(4):
             coords = (250, 200 + 120 * i)
             screen.blit(textbox_small, coords)
-            renderText(battle.player_dialogs[i], (275, 232 + 120 * i), game)
+            renderText(battle.dialog["answers"][i][0], (275, 232 + 120 * i), game)
+    else:
+        renderText("Click to continue...", (640, 900), game)
+    if battle.turn % 3 != 2:
+        renderText(battle.dialog["dialog"], (160, 820), game)
+    elif battle.player_pick[1] == 1:
+        renderText("Your pick was bad, so your stress increases.", (160, 820), game)
+    elif battle.player_pick[1] == 0:
+        renderText("Your pick neutral, so your stress doesn't change.", (160, 820), game)
+    else:
+        renderText("Your pick good, so your stress relieves.", (160, 820), game)
 
 def renderText(text, coords, game):
     text = game.font.render(text, False, (0, 0, 0))
