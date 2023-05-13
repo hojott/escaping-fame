@@ -11,3 +11,7 @@ def drawMenu(screen):
     screen.fill((255, 182, 193))
     screen.blit(start_game, (215, 550))
     screen.blit(exit, (215, 700))
+
+def drawWorld(screen):
+    screen.fill((255, 182, 193))
+
