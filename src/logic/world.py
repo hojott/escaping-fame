@@ -1,6 +1,4 @@
-import pygame
-
-from ..graphics import drawWorld
+from ..graphics import *
 from ..constants import *
 from ..map import maps
 
@@ -29,7 +27,10 @@ class World:
                 for x_pos, vertical_point in enumerate(horizontal_stripe):
                     if vertical_point[0:2] == "sw":
                         if random.random() < 0.5:
-                            self.humans.append(Human(self.game, "texture", [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 40 + 30*random.random()], -1))
+                            self.humans.append(Human(self.game, human1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 40 + 30*random.random()], random.choice([-1, 1])))
+                            self.humans.append(Car(self.game, car1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 200 + 30*random.random()]))
+                        if random.random() < 0.1:
+                            self.humans.append(Fan(self.game, fan1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 40 + 30*random.random()]))
 
     def tick(self):
         drawWorld(self.game, self.map_num, world_pos = self.position)

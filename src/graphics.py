@@ -32,8 +32,14 @@ textbox_small = pygame.transform.scale(textbox, SMALL_TEXTBOX_SIZE)
 player = pygame.image.load("src/graphics/start_game.png")
 player = pygame.transform.scale(player, PLAYER_SIZE)
 
-human = pygame.image.load("src/graphics/exit.png")
-human = pygame.transform.scale(human, HUMAN_SIZE)
+human1_tex = pygame.image.load("src/graphics/exit.png")
+human1_tex = pygame.transform.scale(human1_tex, HUMAN_SIZE)
+
+car1_tex = pygame.image.load("src/graphics/exit.png")
+car1_tex = pygame.transform.scale(car1_tex, CAR_SIZE)
+
+fan1_tex = pygame.image.load("src/graphics/mainmenu.png")
+fan1_tex = pygame.transform.scale(fan1_tex, HUMAN_SIZE)
 
 tiles = {}
 """
@@ -115,7 +121,7 @@ def drawPlayer(game, pos_on_screen: list):
 
     screen.blit(player, tuple(pos_on_screen))
 
-def drawHuman(game, position):
+def drawHuman(game, position, texture):
     screen = game.screen
 
-    screen.blit(human, tuple(position))
+    screen.blit(texture, tuple(position))

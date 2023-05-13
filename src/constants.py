@@ -1,5 +1,4 @@
 SCREEN_SIZE: tuple = (1000, 1000)
-MAX_VELOCITY: int = 5
 HUMAN_VELOCITY: int = 2
 CAR_VELOCITY: int = 10
 
@@ -9,5 +8,8 @@ CHARACTER_SIZE: tuple = (550, 550)
 TEXTBOX_SIZE: tuple = (800, 180)
 SMALL_TEXTBOX_SIZE: tuple = (500, 100)
 FONT_SIZE: int = 25
-PLAYER_SIZE: tuple = (50, 50)
+
+PLAYER_SIZE: tuple = (50, 55)
 HUMAN_SIZE: tuple = (50, 50)
+CAR_SIZE: tuple = (100, 50)
+FAN_SIGHT_SIZE: tuple = (300, 300)
