@@ -48,6 +48,10 @@ stressbar = pygame.image.load("src/graphics/stressbar.png")
 stressbar = pygame.transform.flip(stressbar, False, True)
 
 stresspoint = pygame.image.load("src/graphics/stresspoint.png")
+stresspoint2 = pygame.image.load("src/graphics/stresspoint2.png")
+stresspoint3 = pygame.image.load("src/graphics/stresspoint3.png")
+stresspoint4 = pygame.image.load("src/graphics/stresspoint4.png")
+stresspoint5 = pygame.image.load("src/graphics/stresspoint5.png")
 
 def drawMenu(game):
     screen = game.screen
@@ -81,8 +85,20 @@ def drawUI(game):
     timebar_alpha = alpha if time > 0 else 0  # Set the alpha value of the time bar based on 'time' variable
 
     screen.blit(stressbar.convert_alpha(), (169, 30))
-    for i in range(game.player.stress):
-        screen.blit(stresspoint, (179 + i * 64.5, 88))
+    stress = game.player.stress
+    
+    for i in range(10):
+        if i < stress:
+            if i < 4:
+                screen.blit(stresspoint3, (179 + i * 64.5, 88))
+            elif i < 7:
+                screen.blit(stresspoint4, (179 + i * 64.5, 88))
+            elif i < 10:
+                screen.blit(stresspoint5, (179 + i * 64.5, 88))
+            else:
+                screen.blit(stresspoint2, (179 + i * 64.5, 88))
+        else:
+            screen.blit(stresspoint, (179 + i * 64.5, 88))
 
     timebar = pygame.Rect(240, 51, time * 26, 32)
     pygame.draw.rect(screen, (173, 216, 230, timebar_alpha), timebar)
