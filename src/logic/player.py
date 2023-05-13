@@ -58,18 +58,28 @@ class Player:
     def inputnt(self):
         keys = pygame.key.get_pressed()
 
-        if not keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT] and self.velocity[0] != 0:
-            if self.velocity[0] < 0.4 and self.velocity[0] > -0.4:
-                self.velocity[0] = 0
-            elif self.velocity[0] > 0:
-                self.velocity[0] -= 0.4
+        if not keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]:
+            if self.velocity[0] > 0:
+                if self.velocity[0] > 1:
+                    self.velocity[0] -= 1
+                else:
+                    self.velocity[0] = 0
+                    
             elif self.velocity[0] < 0:
-                self.velocity[0] += 0.4
+                if self.velocity[0] < 1:
+                    self.velocity[0] += 1
+                else:
+                    self.velocity[0] = 0
 
-        if not keys[pygame.K_DOWN] and not keys[pygame.K_UP] and self.velocity[1] != 0:
-            if self.velocity[1] < 0.4 and self.velocity[1] > -0.4:
-                self.velocity[1] = 0
-            elif self.velocity[1] > 0:
-                self.velocity[1] -= 0.4
+        if not keys[pygame.K_DOWN] and not keys[pygame.K_UP]:
+            if self.velocity[1] > 0:
+                if self.velocity[1] > 1:
+                    self.velocity[1] -= 1
+                else:
+                    self.velocity[1] = 0
+
             elif self.velocity[1] < 0:
-                self.velocity[1] += 0.4
+                if self.velocity[1] < 1:
+                    self.velocity[1] += 1
+                else:
+                    self.velocity[1] = 0
