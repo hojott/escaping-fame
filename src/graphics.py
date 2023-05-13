@@ -35,7 +35,6 @@ stressbar = pygame.image.load("src/graphics/stressbar.png")
 stressbar = pygame.transform.flip(stressbar, False, True)
 
 stresspoint = pygame.image.load("src/graphics/stresspoint.png")
-stresspoint = pygame.transform.flip(stresspoint, False, True)
 
 def drawMenu(game):
     screen = game.screen
@@ -45,7 +44,11 @@ def drawMenu(game):
     screen.blit(exit, (215, 500))
 
 def drawUI(game):
-    game.screen.blit(stressbar, (169, 30))
+    screen = game.screen
+
+    screen.blit(stressbar, (169, 30))
+    for i in range(game.player.stress):
+        screen.blit(stresspoint, (179 + i * 64.5, 88))
 
 def drawBattle(game, battle):
     screen = game.screen
