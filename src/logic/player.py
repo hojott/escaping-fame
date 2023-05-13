@@ -4,18 +4,18 @@ from ..constants import *
 from ..graphics import drawPlayer
 
 class Player:
-    def __init__(self, screen: tuple, pos_on_map: list, pos_on_screen: list) -> None:
+    def __init__(self, game, pos_on_map: list, pos_on_screen: list) -> None:
         self.pos_on_map = pos_on_map
         self.pos_on_screen = pos_on_screen
 
         self.stress: int = 5
         self.time: float = 0.0
 
-        self.screen = screen
+        self.game = game
 
         # Same coordinates as Minecraft: east is positive x and south is positive y
         self.velocity = [0, 0]
-        drawPlayer(self.screen, self.pos_on_screen)
+        drawPlayer(self.game, self.pos_on_screen)
 
     def endTurn(self, stress: int):
         self.time += 0.5 + stress * 0.3
@@ -25,7 +25,7 @@ class Player:
         self.input()
         self.inputnt()
         self.move()
-        drawPlayer(self.screen, self.pos_on_screen)
+        drawPlayer(self.game, self.pos_on_screen)
     
     def move(self) -> None:
         self.pos_on_screen[0] += self.velocity[0]

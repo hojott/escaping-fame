@@ -80,4 +80,5 @@ def drawWorld(game):
 
 def drawPlayer(game, pos_on_screen: list):
     screen = game.screen
+
     screen.blit(player, tuple(pos_on_screen))
