@@ -8,11 +8,18 @@ class Player:
         self.pos_on_map = pos_on_map
         self.pos_on_screen = pos_on_screen
 
+        self.stress: int = 5
+        self.time: float = 0.0
+
         self.screen = screen
 
         # Same coordinates as Minecraft: east is positive x and south is positive y
         self.velocity = [0, 0]
         drawPlayer(self.screen, self.pos_on_screen)
+
+    def endTurn(self, stress: int):
+        self.time += 0.5 + stress * 0.3
+        self.stress += stress
 
     def tick(self) -> None:
         self.input()

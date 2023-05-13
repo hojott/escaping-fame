@@ -16,6 +16,7 @@ class Game:
         self.state: str = "menu"
         self.world: World = None
         self.battle: Battle = None
+        self.player: Player = None
 
         self.start_game()
 
@@ -50,6 +51,8 @@ class Game:
 
                 if keys[pygame.K_ESCAPE]:
                     self.load_menu()
+                if keys[pygame.K_0]:
+                    self.start_battle()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -63,7 +66,7 @@ class Game:
                                 self.running = False
 
                     elif self.state == "battle":
-                        if self.battle.turn % 2 == 0:
+                        if self.battle.turn % 3 != 1:
                             self.battle.switchTurn()
                         else:
                             for i, textbox in enumerate(self.battle.textbox_rects):
