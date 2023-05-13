@@ -5,6 +5,7 @@ from .constants import *
 from .graphics import *
 from .logic.world import World
 from .logic.battle import Battle
+from .logic.player import Player
 
 class Game:
     def __init__(self):
@@ -21,40 +22,52 @@ class Game:
 
     def start_game(self):
         self.running: bool = True
+        self.load_menu()
 
         clock = pygame.time.Clock()
 
         while self.running:
+            keys = pygame.key.get_pressed()
+            mouse_buttons = pygame.mouse.get_pressed()
+            mouse_pos = pygame.mouse.get_pos()
+            
+            # Drawing
             if self.state == "menu":
                 drawMenu(self.screen)
+
+                if keys[pygame.K_0]:
+                    self.start_battle()
+                if keys[pygame.K_q]:
+                    self.running = False
+
             elif self.state == "battle":
-                self.battle.rects = drawBattle(self, self.battle)
+                drawBattle(self, self.battle)
+
+            elif self.state == "game":
+                drawWorld(self.screen)
+
+                self.player.tick()
+
+                if keys[pygame.K_ESCAPE]:
+                    self.load_menu()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_0:
-                        self.start_battle()
-                    if self.state == "menu":
-                        if event.key == pygame.K_q:
-                            self.running = False
-
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    pos = pygame.mouse.get_pos()
                     if self.state == "menu":
-                        if pos[0] > 215 and pos[0] < 785:
-                            if pos[1] > 550 and pos[1] < 660:
+                        if mouse_pos[0] > 215 and mouse_pos[0] < 785:
+                            if mouse_pos[1] > 550 and mouse_pos[1] < 660:
                                 self.load_game()
-                            elif pos[1] > 700 and pos[1] < 810:
+                            elif mouse_pos[1] > 700 and mouse_pos[1] < 810:
                                 self.running = False
 
-                    if self.state == "battle":
+                    elif self.state == "battle":
                         if self.battle.turn % 2 == 0:
                             self.battle.switchTurn()
                         else:
                             for i, textbox in enumerate(self.battle.textbox_rects):
-                                if textbox.collidepoint(pos[0], pos[1]):
+                                if textbox.collidepoint(mouse_pos[0], mouse_pos[1]):
                                     self.battle.pickDialog(i)
 
             pygame.display.flip()
@@ -63,9 +76,13 @@ class Game:
 
         pygame.quit()
 
+    def load_menu(self):
+        self.state = "menu"
+
     def load_game(self):
         self.state = "game"
         self.world = World(self)
+        self.player = Player(self.screen, pos_on_map = [10, 10], pos_on_screen = [10, 10])
 
     def start_battle(self):
         self.state = "battle"

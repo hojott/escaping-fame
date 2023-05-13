@@ -17,6 +17,9 @@ textbox = pygame.image.load("src/graphics/textbox.png")
 textbox = pygame.transform.scale(textbox, TEXTBOX_SIZE)
 textbox_small = pygame.transform.scale(textbox, SMALL_TEXTBOX_SIZE)
 
+player = pygame.image.load("src/graphics/start_game.png")
+player = pygame.transform.scale(player, PLAYER_SIZE)
+
 def drawMenu(screen):
     screen.fill((255, 182, 193))
     screen.blit(start_game, (215, 550))
@@ -39,6 +42,12 @@ def drawBattle(game, battle):
             screen.blit(textbox_small, coords)
             renderText(battle.player_dialogs[i], (275, 232 + 120 * i), game)
 
-def renderText(text: str, coords: tuple, game):
+def renderText(text, coords, game):
     text = game.font.render(text, False, (0, 0, 0))
     game.screen.blit(text, coords)
+
+def drawWorld(screen):
+    screen.fill((255, 182, 193))
+
+def drawPlayer(screen, pos_on_screen: list):
+    screen.blit(player, tuple(pos_on_screen))
