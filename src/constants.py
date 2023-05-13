@@ -1,4 +1,5 @@
 SCREEN_SIZE: tuple = (1000, 1000)
+WORLD_SIZE: tuple = (2000, 2000)
 MAX_VELOCITY: int = 5
 
 TILE_SIZE: tuple = (100, 100)
