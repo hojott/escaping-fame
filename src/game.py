@@ -57,9 +57,9 @@ class Game:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.state == "menu":
                         if mouse_pos[0] > 215 and mouse_pos[0] < 785:
-                            if mouse_pos[1] > 550 and mouse_pos[1] < 660:
+                            if mouse_pos[1] > 350 and mouse_pos[1] < 460:
                                 self.load_game()
-                            elif mouse_pos[1] > 700 and mouse_pos[1] < 810:
+                            elif mouse_pos[1] > 500 and mouse_pos[1] < 610:
                                 self.running = False
 
                     elif self.state == "battle":

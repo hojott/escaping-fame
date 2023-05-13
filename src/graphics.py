@@ -20,10 +20,13 @@ textbox_small = pygame.transform.scale(textbox, SMALL_TEXTBOX_SIZE)
 player = pygame.image.load("src/graphics/start_game.png")
 player = pygame.transform.scale(player, PLAYER_SIZE)
 
+mainmenu = pygame.image.load("src/graphics/mainmenu.png")
+mainmenu = pygame.transform.scale(mainmenu, SCREEN_SIZE)
+
 def drawMenu(screen):
-    screen.fill((255, 182, 193))
-    screen.blit(start_game, (215, 550))
-    screen.blit(exit, (215, 700))
+    screen.blit(mainmenu, (0, 0))
+    screen.blit(start_game, (215, 350))
+    screen.blit(exit, (215, 500))
 
 def drawBattle(game, battle):
     screen = game.screen
