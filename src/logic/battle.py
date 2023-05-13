@@ -31,7 +31,7 @@ class Battle:
         else:
             print("no more dialogs")
             return
-        if self.dialog[0] == None:
+        if self.dialog == None:
             print("no more dialogs")
             return
 
