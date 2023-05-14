@@ -1,5 +1,6 @@
 import pygame
 from .constants import *
+from .dialogs import texts
 from .map import maps
 from math import floor
 
@@ -74,7 +75,8 @@ def drawInfo(game):
     screen = game.screen
 
     screen.blit(intro, (0, 0))
-    renderText("Go brr before time goes brr", (0, 0), game)
+    for i, row in enumerate(texts["intro"]):
+        renderText(row, (20, 40 + i * 40), game)
 
 def drawPause(game):
     screen = game.screen
