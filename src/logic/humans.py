@@ -40,7 +40,7 @@ class Car(Human):
     
     def check_collide(self):
         if self.bounding_box.colliderect(self.game.player.bounding_box):
-            self.game.start_battle()
+            self.game.load_ending("joke_ending")
 
 class Fan(Human):
     def __init__(self, game, texture, pos_on_map: list[int, int]):

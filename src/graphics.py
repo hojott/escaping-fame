@@ -32,23 +32,23 @@ textbox_small = pygame.transform.scale(textbox, SMALL_TEXTBOX_SIZE)
 player = pygame.image.load("src/graphics/mc.png")
 player = pygame.transform.scale(player, PLAYER_SIZE)
 
-human1_tex = pygame.image.load("src/graphics/emmaeestiia.png")
+human1_tex = pygame.image.load("src/graphics/en1.png")
 human1_tex = pygame.transform.scale(human1_tex, HUMAN_SIZE)
 
 car1_tex = pygame.image.load("src/graphics/car.png")
 car1_tex = pygame.transform.scale(car1_tex, CAR_SIZE)
 
-fan1_tex = pygame.image.load("src/graphics/emmaeestiia.png")
+fan1_tex = pygame.image.load("src/graphics/en1.png")
 fan1_tex = pygame.transform.scale(fan1_tex, HUMAN_SIZE)
 
 tiles = {}
 """
 tiles = {
-    "sw1" = sw1-kuva
+    "sw1": sw1-kuva
     ...
 }
 """
-for i in range(1, 6):
+for i in range(1, 10):
     tiles[f"sw{i}"] = pygame.image.load(f"src/graphics/tiles/sw{i}.png")
     tiles[f"sw{i}"] = pygame.transform.scale(tiles[f"sw{i}"], TILE_SIZE)
 
@@ -56,6 +56,13 @@ stressbar = pygame.image.load("src/graphics/stressbar.png")
 stressbar = pygame.transform.flip(stressbar, False, True)
 
 stresspoint = pygame.image.load("src/graphics/stresspoint.png")
+
+joke_ending = pygame.image.load("src/graphics/jokeEnding.png")
+joke_ending = pygame.transform.scale(joke_ending, SCREEN_SIZE)
+
+endings = {
+    "joke_ending": joke_ending
+}
 
 def drawMenu(game):
     screen = game.screen
@@ -125,3 +132,8 @@ def drawHuman(game, position, texture):
     screen = game.screen
 
     screen.blit(texture, tuple(position))
+
+def drawEnding(game, ending):
+    screen = game.screen
+
+    screen.blit(endings[ending], (0, 0))

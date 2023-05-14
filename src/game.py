@@ -61,6 +61,11 @@ class Game:
                     self.load_menu()
                 if keys[pygame.K_0]:
                     self.start_battle()
+            
+            elif self.state == "ending":
+                drawEnding(self, self.ending)
+                if keys[pygame.K_q]:
+                    self.running = False
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -98,3 +103,7 @@ class Game:
     def start_battle(self):
         self.state = "battle"
         self.battle = Battle(self)
+    
+    def load_ending(self, ending: str):
+        self.state = "ending"
+        self.ending = ending
