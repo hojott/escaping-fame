@@ -39,7 +39,7 @@ class World:
                                 else: 
                                     randint = random.randint(1, 1000000)
                                     self.humans.append((randint, Car(self.game, car1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 200 + 30*random.random()], -1, randint)))
-                            if random.random() < 0.01:
+                            if random.random() < 0.1:
                                 if random.random() < 0.5:
                                     randint = random.randint(1, 1000000)
                                     self.humans.append((randint, Fan(self.game, fan1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 40 + 30*random.random()], randint)))
@@ -137,3 +137,11 @@ class World:
             self.spawn_on_sides()
         else:
             self.timer += 1
+        self.spawn_kaarija()
+
+    def spawn_kaarija(self):
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_TAB:
+                randint = random.randint(1, 1000000)
+                self.humans.append((randint, K_Car(self.game, [1100, TILE_SIZE[1]*0 + 200 + 30*random.random()], -1, randint)))
+
