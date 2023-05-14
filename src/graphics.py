@@ -70,6 +70,10 @@ for i in range(1, 10):
     tiles[f"sw{i}"] = pygame.image.load(f"src/graphics/tiles/sw{i}.png")
     tiles[f"sw{i}"] = pygame.transform.scale(tiles[f"sw{i}"], TILE_SIZE)
 
+for i in range(1, 4):
+    tiles[f"b{i}"] = pygame.image.load(f"src/graphics/tiles/b{i}.png")
+    tiles[f"b{i}"] = pygame.transform.scale(tiles[f"b{i}"], TILE_SIZE)
+
 stressbar = pygame.image.load("src/graphics/stressbar.png")
 stressbar = pygame.transform.flip(stressbar, False, True)
 
