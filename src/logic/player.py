@@ -34,6 +34,9 @@ class Player:
         self.move_player()
         drawPlayer(self.game, self.pos_on_screen)
 
+        if self.pos_on_map[0] > 9000:
+            self.game.loadEnding("good_ending")
+
     def calculate_movement(self) -> list[float, float]:
         movement = [float, float]
 
