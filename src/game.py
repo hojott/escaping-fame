@@ -47,14 +47,17 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.running = False
                 elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
+                    if event.key == pygame.K_ESCAPE and self.state != "menu" and self.state != "info":
                         self.load_pausemenu()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if self.state == "menu":
                         if mouse_pos[0] > 215 and mouse_pos[0] < 785:
-                            if mouse_pos[1] > 350 and mouse_pos[1] < 460:
+                            if mouse_pos[1] > 270 and mouse_pos[1] < 380:
                                 self.load_game()
-                            elif mouse_pos[1] > 500 and mouse_pos[1] < 610:
+                            elif mouse_pos[1] > 420 and mouse_pos[1] < 530:
+                                self.load_info()
+                                pass
+                            elif mouse_pos[1] > 570 and mouse_pos[1] < 680:
                                 self.running = False
                     elif self.state == "battle":
                         if self.battle.turn % 3 != 1:
@@ -63,11 +66,17 @@ class Game:
                             for i, textbox in enumerate(self.battle.textbox_rects):
                                 if textbox.collidepoint(mouse_pos[0], mouse_pos[1]):
                                     self.battle.pickDialog(i)
+                    elif self.state == "info":
+                        self.state = "menu"
 
             if self.state == "menu":
                 drawMenu(self)
             elif self.state == "battle":
+                drawWorld(self, 0, self.world.position)
+                drawPlayer(self, self.player.pos_on_screen)
+                drawPause(self)
                 drawBattle(self, self.battle)
+                drawUI(self)
             elif self.state == "game":
                 if not self.paused:
                     self.world.tick()
@@ -79,9 +88,11 @@ class Game:
                     drawWorld(self, 0, self.world.position)
                     drawPlayer(self, self.player.pos_on_screen)
                 drawUI(self)
+            elif self.state == "info":
+                drawInfo(self)
 
             if self.paused:
-                drawPause(self)
+                drawPausemenu(self)
 
             pygame.display.flip()
             clock.tick(60)
@@ -90,6 +101,9 @@ class Game:
 
     def load_menu(self):
         self.state = "menu"
+
+    def load_info(self):
+        self.state = "info"
 
     def load_pausemenu(self):
         if not self.paused:
