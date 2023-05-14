@@ -121,7 +121,7 @@ def drawUI(game):
         else:
             screen.blit(stresspoint, (179 + i * 64.5, 88))
 
-    timebar = pygame.Rect(240, 51, time * 26, 32)
+    timebar = pygame.Rect(240, 43, time * 26, 32)
     pygame.draw.rect(screen, (173, 216, 230, timebar_alpha), timebar)
 
 def drawBattle(game, battle):
