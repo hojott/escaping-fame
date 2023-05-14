@@ -37,20 +37,35 @@ textbox = pygame.image.load("src/graphics/textbox.png")
 textbox = pygame.transform.scale(textbox, TEXTBOX_SIZE)
 textbox_small = pygame.transform.scale(textbox, SMALL_TEXTBOX_SIZE)
 
-player = pygame.image.load("src/graphics/player.png")
+player = pygame.image.load("src/graphics/mc.png")
 player = pygame.transform.scale(player, PLAYER_SIZE)
 
-human = pygame.image.load("src/graphics/exit.png")
-human = pygame.transform.scale(human, HUMAN_SIZE)
+human1_tex = pygame.image.load("src/graphics/randdude.png")
+human1_tex = pygame.transform.scale(human1_tex, HUMAN_SIZE)
+
+car1_tex = pygame.image.load("src/graphics/car.png")
+car1_tex = pygame.transform.scale(car1_tex, CAR_SIZE)
+
+car2_tex = pygame.image.load("src/graphics/car_reversed.png")
+car2_tex = pygame.transform.scale(car2_tex, CAR_SIZE)
+
+kaarija_tex = pygame.image.load("src/graphics/kaarija.png")
+kaarija_tex = pygame.transform.scale(kaarija_tex, CAR_SIZE)
+
+fan1_tex = pygame.image.load("src/graphics/en1.png")
+fan1_tex = pygame.transform.scale(fan1_tex, HUMAN_SIZE)
+
+fan2_tex = pygame.image.load("src/graphics/en2.png")
+fan2_tex = pygame.transform.scale(fan2_tex, HUMAN_SIZE)
 
 tiles = {}
 """
 tiles = {
-    "sw1" = sw1-kuva
+    "sw1": sw1-kuva
     ...
 }
 """
-for i in range(1, 6):
+for i in range(1, 10):
     tiles[f"sw{i}"] = pygame.image.load(f"src/graphics/tiles/sw{i}.png")
     tiles[f"sw{i}"] = pygame.transform.scale(tiles[f"sw{i}"], TILE_SIZE)
 
@@ -62,6 +77,17 @@ stresspoint2 = pygame.image.load("src/graphics/stresspoint2.png")
 stresspoint3 = pygame.image.load("src/graphics/stresspoint3.png")
 stresspoint4 = pygame.image.load("src/graphics/stresspoint4.png")
 stresspoint5 = pygame.image.load("src/graphics/stresspoint5.png")
+
+joke_ending = pygame.image.load("src/graphics/jokeEnding.png")
+joke_ending = pygame.transform.scale(joke_ending, SCREEN_SIZE)
+
+kaarija_ending = pygame.image.load("src/graphics/kaarija_ending.png")
+kaarija_ending = pygame.transform.scale(kaarija_ending, SCREEN_SIZE)
+
+endings = {
+    "joke_ending": joke_ending,
+    "kaarija_ending": kaarija_ending
+}
 
 def drawMenu(game):
     screen = game.screen
@@ -92,7 +118,7 @@ def drawPausemenu(game):
     pygame.draw.rect(game.screen, (255,255,204), bg)
     renderText("Game paused, esc to unpause.", (165, 500), game, True)
 
-def drawUI(game):
+def drawUI(game, at_bottom = False):
     screen = game.screen
 
     alpha = 190
@@ -100,31 +126,61 @@ def drawUI(game):
         if game.player.pos_on_screen[1] < 200:
             alpha = 40
 
-    stressbar.set_alpha(alpha)
-    for i in range(game.player.stress):
-        stresspoint.set_alpha(alpha)
+        stressbar.set_alpha(alpha)
+        for i in range(game.player.stress):
+            stresspoint.set_alpha(alpha)
 
-    time = game.player.time
-    timebar_alpha = alpha if time > 0 else 0
+        time = game.player.time
+        timebar_alpha = alpha if time > 0 else 0
 
-    screen.blit(stressbar.convert_alpha(), (169, 30))
-    stress = game.player.stress
-    
-    for i in range(10):
-        if i < stress:
-            if i < 3:
-                screen.blit(stresspoint3, (179 + i * 64.5, 88))
-            elif i < 6:
-                screen.blit(stresspoint4, (179 + i * 64.5, 88))
-            elif i < 9:
-                screen.blit(stresspoint5, (179 + i * 64.5, 88))
+        screen.blit(stressbar.convert_alpha(), (169, 800))
+        stress = game.player.stress
+        for i in range(10):
+            if i < stress:
+                if i < 3:
+                    screen.blit(stresspoint3, (179 + i * 64.5, 855))
+                elif i < 6:
+                    screen.blit(stresspoint4, (179 + i * 64.5, 855))
+                elif i < 9:
+                    screen.blit(stresspoint5, (179 + i * 64.5, 855))
+                else:
+                    screen.blit(stresspoint2, (179 + i * 64.5, 855))
             else:
-                screen.blit(stresspoint2, (179 + i * 64.5, 88))
-        else:
-            screen.blit(stresspoint, (179 + i * 64.5, 88))
+                screen.blit(stresspoint, (179 + i * 64.5, 855))
 
-    timebar = pygame.Rect(240, 43, time * 26, 32)
-    pygame.draw.rect(screen, (173, 216, 230, timebar_alpha), timebar)
+        timebar = pygame.Rect(240, 813, time * 26, 32)
+        pygame.draw.rect(screen, (173, 216, 230, timebar_alpha), timebar)
+
+    else:
+        alpha = 190
+        if game.player.pos_on_screen[0] < 900 and game.player.pos_on_screen[0] > 100:
+            if game.player.pos_on_screen[1] < 200:
+                alpha = 40
+
+        stressbar.set_alpha(alpha)
+        for i in range(game.player.stress):
+            stresspoint.set_alpha(alpha)
+
+        time = game.player.time
+        timebar_alpha = alpha if time > 0 else 0
+
+        screen.blit(stressbar.convert_alpha(), (169, 30))
+        stress = game.player.stress
+        for i in range(10):
+            if i < stress:
+                if i < 3:
+                    screen.blit(stresspoint3, (179 + i * 64.5, 85))
+                elif i < 6:
+                    screen.blit(stresspoint4, (179 + i * 64.5, 85))
+                elif i < 9:
+                    screen.blit(stresspoint5, (179 + i * 64.5, 85))
+                else:
+                    screen.blit(stresspoint2, (179 + i * 64.5, 85))
+            else:
+                screen.blit(stresspoint, (179 + i * 64.5, 85))
+
+        timebar = pygame.Rect(240, 43, time * 26, 32)
+        pygame.draw.rect(screen, (173, 216, 230, timebar_alpha), timebar)
 
 def drawBattle(game, battle):
     screen = game.screen
@@ -132,7 +188,6 @@ def drawBattle(game, battle):
     screen.blit(mainCharacter_battle, (-80, 230))
     screen.blit(battle.enemy, (600, 100))
     screen.blit(textbox, (100, 780))
-    drawUI(game)
 
     dialog = battle.dialogs[floor(battle.turn / 3)]
 
@@ -174,8 +229,6 @@ def drawWorld(game, map_num: int, world_pos: list) -> list[int, int]:
             for x_pos, vertical_point in enumerate(horizontal_stripe):
                 screen.blit(tiles[vertical_point], (-world_pos[0] + TILE_SIZE[0]*x_pos, -world_pos[1] + TILE_SIZE[1]*y_pos))
 
-    drawUI(game)
-
     return MAP_SIZE
 
 def drawPlayer(game, pos_on_screen: list):
@@ -183,7 +236,12 @@ def drawPlayer(game, pos_on_screen: list):
 
     screen.blit(player, tuple(pos_on_screen))
 
-def drawHuman(game, position):
+def drawHuman(game, position, texture):
     screen = game.screen
 
-    screen.blit(human, tuple(position))
+    screen.blit(texture, tuple(position))
+
+def drawEnding(game, ending):
+    screen = game.screen
+
+    screen.blit(endings[ending], (0, 0))

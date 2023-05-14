@@ -17,7 +17,7 @@ class Game:
 
         self.screen: tuple = pygame.display.set_mode(SCREEN_SIZE)
 
-        pygame.display.set_caption("Tulevaisuuspeli")
+        pygame.display.set_caption("Escaping Fame")
 
         self.icon = pygame.image.load('src/graphics/start_game.png')
         pygame.display.set_icon(self.icon)
@@ -40,7 +40,12 @@ class Game:
         while self.running:
             keys = pygame.key.get_pressed()
             mouse_pos = pygame.mouse.get_pos()
-            
+
+            if self.state == "ending":
+                drawEnding(self, self.ending)
+                if keys[pygame.K_q]:
+                    self.running = False
+
             events = pygame.event.get()
             
             for event in events:
@@ -87,7 +92,7 @@ class Game:
                 else:
                     drawWorld(self, 0, self.world.position)
                     drawPlayer(self, self.player.pos_on_screen)
-                drawUI(self)
+                drawUI(self, at_bottom=True)
             elif self.state == "info":
                 drawInfo(self)
 
@@ -121,3 +126,7 @@ class Game:
     def start_battle(self):
         self.state = "battle"
         self.battle = Battle(self)
+    
+    def load_ending(self, ending: str):
+        self.state = "ending"
+        self.ending = ending
