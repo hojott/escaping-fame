@@ -3,6 +3,7 @@ from .constants import *
 from .dialogs import texts
 from .map import maps
 from math import floor
+from random import choice
 
 exit = pygame.image.load("src/graphics/exit.png")
 exit = pygame.transform.scale(exit, BUTTON_SIZE)
@@ -84,9 +85,17 @@ joke_ending = pygame.transform.scale(joke_ending, SCREEN_SIZE)
 kaarija_ending = pygame.image.load("src/graphics/kaarija_ending.png")
 kaarija_ending = pygame.transform.scale(kaarija_ending, SCREEN_SIZE)
 
+good_ending = pygame.image.load("src/graphics/good_ending.png")
+good_ending = pygame.transform.scale(good_ending, SCREEN_SIZE)
+
+bad_ending = pygame.image.load("src/graphics/bad_ending.png")
+bad_ending = pygame.transform.scale(bad_ending, SCREEN_SIZE)
+
 endings = {
     "joke_ending": joke_ending,
-    "kaarija_ending": kaarija_ending
+    "kaarija_ending": kaarija_ending,
+    "good_ending": good_ending,
+    "bad_ending": bad_ending
 }
 
 def drawMenu(game):
@@ -245,3 +254,15 @@ def drawEnding(game, ending):
     screen = game.screen
 
     screen.blit(endings[ending], (0, 0))
+
+    if ending == "joke_ending":
+        y = 150
+    elif ending == "kaarija_ending":
+        y = 350
+    elif ending == "bad_ending":
+        y = 10
+    else:
+        y = 40
+
+    for i, row in enumerate(texts[ending]):
+        renderText(row, (20, y + i * 40), game)

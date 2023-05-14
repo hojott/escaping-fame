@@ -52,7 +52,7 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.running = False
                 elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE and self.state != "menu" and self.state != "info":
+                    if event.key == pygame.K_ESCAPE and self.state != "menu" and self.state != "info" and self.state != "ending":
                         self.load_pausemenu()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if self.state == "menu":
@@ -73,6 +73,8 @@ class Game:
                                     self.battle.pickDialog(i)
                     elif self.state == "info":
                         self.state = "menu"
+                    elif self.state == "ending":
+                        self.running = False
 
             if self.state == "menu":
                 drawMenu(self)
@@ -95,6 +97,8 @@ class Game:
                 drawUI(self, at_bottom=True)
             elif self.state == "info":
                 drawInfo(self)
+            elif self.state == "ending":
+                drawEnding(self, self.ending)
 
             if self.paused:
                 drawPausemenu(self)

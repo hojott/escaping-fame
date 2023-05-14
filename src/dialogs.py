@@ -63,10 +63,20 @@ texts = {
         "had left is gone. You go on to be rich and successful, but you don’t find it worth it"
     ],
     "good_ending": [
-        "You successfully chenged your identity, you can live your life in peace and quiet."
-        "Sometimes you hear people ask about the birthmark that you were recognized from as"
-        "an idol, but they just assume you are a huge fan of yourself."
+        "You successfully chenged your identity, you can live your life in peace and quiet.",
+        "Sometimes you hear people ask about the birthmark that you were recognized",
+        "from as an idol, but they just assume you are a huge fan of yourself."
+    ],
+    "joke_ending": [
+        "You get hit by a car. They drive away out of fear of getting",
+        "sued out of existance because of who you are. "
+    ],
+    "kaarija_ending": [
+        "You found the Käärijä car! Lakkasit ajattelemasta huomista ja",
+        "aloit tarttumaan tuopista. You found happiness. You now make music",
+        "with Käärijä. Et enään pelkääkkään tätä maailmaa."
     ]
+
 }
 
 for i in range(4):
