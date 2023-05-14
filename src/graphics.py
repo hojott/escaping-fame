@@ -124,7 +124,7 @@ def drawUI(game, at_bottom = False):
     if at_bottom:
         alpha = 255
         if game.player.pos_on_screen[0] < 900 and game.player.pos_on_screen[0] > 100:
-            if game.player.pos_on_screen[1] < 200:
+            if game.player.pos_on_screen[1] > 800:
                 alpha = 80
 
         stressbar.set_alpha(alpha)
@@ -139,17 +139,17 @@ def drawUI(game, at_bottom = False):
         for i in range(10):
             if i < stress:
                 if i < 3:
-                    screen.blit(stresspoint3, (179 + i * 64.5, 888))
+                    screen.blit(stresspoint3, (179 + i * 64.5, 855))
                 elif i < 6:
-                    screen.blit(stresspoint4, (179 + i * 64.5, 888))
+                    screen.blit(stresspoint4, (179 + i * 64.5, 855))
                 elif i < 9:
-                    screen.blit(stresspoint5, (179 + i * 64.5, 888))
+                    screen.blit(stresspoint5, (179 + i * 64.5, 855))
                 else:
-                    screen.blit(stresspoint2, (179 + i * 64.5, 888))
+                    screen.blit(stresspoint2, (179 + i * 64.5, 855))
             else:
-                screen.blit(stresspoint, (179 + i * 64.5, 88))
+                screen.blit(stresspoint, (179 + i * 64.5, 855))
 
-        timebar = pygame.Rect(240, 43, time * 26, 802)
+        timebar = pygame.Rect(240, 813, time * 26, 32)
         pygame.draw.rect(screen, (173, 216, 230, timebar_alpha), timebar)
 
     else:
@@ -170,15 +170,15 @@ def drawUI(game, at_bottom = False):
         for i in range(10):
             if i < stress:
                 if i < 3:
-                    screen.blit(stresspoint3, (179 + i * 64.5, 88))
+                    screen.blit(stresspoint3, (179 + i * 64.5, 85))
                 elif i < 6:
-                    screen.blit(stresspoint4, (179 + i * 64.5, 88))
+                    screen.blit(stresspoint4, (179 + i * 64.5, 85))
                 elif i < 9:
-                    screen.blit(stresspoint5, (179 + i * 64.5, 88))
+                    screen.blit(stresspoint5, (179 + i * 64.5, 85))
                 else:
-                    screen.blit(stresspoint2, (179 + i * 64.5, 88))
+                    screen.blit(stresspoint2, (179 + i * 64.5, 85))
             else:
-                screen.blit(stresspoint, (179 + i * 64.5, 88))
+                screen.blit(stresspoint, (179 + i * 64.5, 85))
 
         timebar = pygame.Rect(240, 43, time * 26, 32)
         pygame.draw.rect(screen, (173, 216, 230, timebar_alpha), timebar)
@@ -189,7 +189,6 @@ def drawBattle(game, battle):
     screen.blit(mainCharacter_battle, (-80, 230))
     screen.blit(battle.enemy, (600, 100))
     screen.blit(textbox, (100, 780))
-    drawUI(game)
 
     dialog = battle.dialogs[floor(battle.turn / 3)]
 
@@ -230,8 +229,6 @@ def drawWorld(game, map_num: int, world_pos: list) -> list[int, int]:
         else:
             for x_pos, vertical_point in enumerate(horizontal_stripe):
                 screen.blit(tiles[vertical_point], (-world_pos[0] + TILE_SIZE[0]*x_pos, -world_pos[1] + TILE_SIZE[1]*y_pos))
-
-    drawUI(game)
 
     return MAP_SIZE
 
