@@ -24,7 +24,7 @@ class Player:
 
     def endTurn(self, stress: int):
         self.time += 0.5 + stress * 0.3
-        self.stress += stress
+        self.stress -= stress
         if self.stress < 1: self.stress = 1
         elif self.stress > 10: self.stress = 10
 
@@ -63,8 +63,8 @@ class Player:
                 self.pos_on_map[0] += movement[0]
                 self.game.world.position[0] += movement[0]
                 for human in self.game.world.humans:
-                    human.pos_on_screen[0] -= movement[0]
-                    human.bounding_box.update((human.pos_on_screen[0]-self.velocity[0], human.pos_on_screen[1]), HUMAN_SIZE)
+                    human[1].pos_on_screen[0] -= movement[0]
+                    human[1].bounding_box.update((human[1].pos_on_screen[0]-self.velocity[0], human[1].pos_on_screen[1]), HUMAN_SIZE)
             
         if movement[0] <= 0:
             if self.game.world.position[0] <= 0 or self.pos_on_screen[0] > 475:
@@ -74,8 +74,8 @@ class Player:
                 self.pos_on_map[0] += movement[0]
                 self.game.world.position[0] += movement[0]
                 for human in self.game.world.humans:
-                    human.pos_on_screen[0] -= movement[0]
-                    human.bounding_box.update((human.pos_on_screen[0]-self.velocity[0], human.pos_on_screen[1]), HUMAN_SIZE)
+                    human[1].pos_on_screen[0] -= movement[0]
+                    human[1].bounding_box.update((human[1].pos_on_screen[0]-self.velocity[0], human[1].pos_on_screen[1]), HUMAN_SIZE)
 
         # Vertical movement
         if movement[1] >= 0:
@@ -86,8 +86,8 @@ class Player:
                 self.pos_on_map[1] += movement[1]
                 self.game.world.position[1] += movement[1]
                 for human in self.game.world.humans:
-                    human.pos_on_screen[1] -= movement[1]
-                    human.bounding_box.update((human.pos_on_screen[0], human.pos_on_screen[1]-self.velocity[1]), HUMAN_SIZE)
+                    human[1].pos_on_screen[1] -= movement[1]
+                    human[1].bounding_box.update((human[1].pos_on_screen[0], human[1].pos_on_screen[1]-self.velocity[1]), HUMAN_SIZE)
         
         if movement[1] <= 0:
             if self.game.world.position[1] <= 0 or self.pos_on_screen[1] > 475:
@@ -97,8 +97,8 @@ class Player:
                 self.pos_on_map[1] += movement[1]
                 self.game.world.position[1] += movement[1]
                 for human in self.game.world.humans:
-                    human.pos_on_screen[1] -= movement[1]
-                    human.bounding_box.update((human.pos_on_screen[0], human.pos_on_screen[1]-self.velocity[1]), HUMAN_SIZE)
+                    human[1].pos_on_screen[1] -= movement[1]
+                    human[1].bounding_box.update((human[1].pos_on_screen[0], human[1].pos_on_screen[1]-self.velocity[1]), HUMAN_SIZE)
 
     def input(self) -> None:
         keys = pygame.key.get_pressed()
