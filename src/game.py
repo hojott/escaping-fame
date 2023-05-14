@@ -1,4 +1,5 @@
 import pygame
+import random
 
 # Use relative imports because running app from main.py
 from .constants import *
@@ -6,6 +7,7 @@ from .graphics import *
 from .logic.world import World
 from .logic.battle import Battle
 from .logic.player import Player
+from .logic.humans import K_Car
 
 class Game:
     def __init__(self):
@@ -54,6 +56,9 @@ class Game:
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE and self.state != "menu" and self.state != "info" and self.state != "ending":
                         self.load_pausemenu()
+                    if event.key == pygame.K_TAB and self.state != "menu" and self.state != "info" and self.state != "ending":
+                        randint = random.randint(1, 1000000)
+                        self.world.humans.append((randint, K_Car(self.game, [1100, TILE_SIZE[1]*0 + 200 + 30*random.random()], -1, randint)))
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if self.state == "menu":
                         if mouse_pos[0] > 215 and mouse_pos[0] < 785:

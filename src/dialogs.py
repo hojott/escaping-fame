@@ -3,45 +3,45 @@ import random
 dialogs = [
     [
         {
-            "dialog": "kysymys 1",
+            "dialog": "Hey It's you! I'm a big fan! Can I get an autograph?",
             "answers": [
-                ("hyvä vastaus", 1),
-                [("neutraali vastaus", 0), ("huono vastaus", -1)],
-                ("huono vastaus", -1),
-                ("huono vastaus", -1)
+                ("Sorry, I can’t right now.", 1),
+                [("I’m kind of in a hurry. Just let’s do this quickly.", 0), ("Get out of my way!", -1)],
+                ("No, I don’t have time for this!", -1),
+                ("*Ignore them*", -1)
             ]
         }
     ],
     [
         {
-            "dialog": "kysymys 2",
+            "dialog": "Hey! My niece loves your music, can I have a picture to show them later?",
             "answers": [
-                ("hyvä vastaus", 1),
-                ("neutraali vastaus", 0),
-                [("neutraali vastaus", 0), ("huono vastaus", -1)],
-                ("huono vastaus", -1)
+                ("I don’t have time for this!", 1),
+                ("Please, leave me alone", 0),
+                [("O-okay let’s just get this done quickly", 0), ("Get away from me", -1)],
+                ("Look at them like you saw a ghost", -1)
             ]
         },
     ],
     [
         {
-            "dialog": "kysymys 3",
+            "dialog": "Wow it's you! I love your music! Can we pleeeease take a picture?",
             "answers": [
-                ("hyvä vastaus", 1),
-                ("hyvä vastaus", 1),
-                ("neutraali vastaus", 0),
-                ("huono vastaus", -1)
+                ("I'm really sorry...", 1),
+                ("Some other time", 1),
+                ("I really dont have the time for this!", 0),
+                ("Touch grass", -1)
             ]
         },
     ],
     [
         {
-            "dialog": "kysymys 4",
+            "dialog": "HEY IS THAT REALLY YOU OMGOMGOMGOMGOMG I’M A HUUUUUGE FAN?!?!?!?!?!",
             "answers": [
-                ("hyvä vastaus", 1),
-                ("hyvä vastaus", 1),
-                ("neutraali vastaus", 0),
-                ("neutraali vastaus", 0)
+                ("Go away!", 1),
+                ("I CAN’T", 0),
+                ("break down and scream “AAAAAAAAAAAAAAAAAAAAAAAAAAA", -1),
+                ("...", 0)
             ]
         },
     ]

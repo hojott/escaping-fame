@@ -11,5 +11,5 @@ FONT_SIZE: int = 25
 
 PLAYER_SIZE: tuple = (50, 55)
 HUMAN_SIZE: tuple = (50, 50)
-FAN_SIZE: tuple = (300, 300)
+FAN_SIZE: tuple = (600, 600)
 CAR_SIZE: tuple = (100, 50)
