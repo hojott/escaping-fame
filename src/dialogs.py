@@ -3,7 +3,7 @@ import random
 dialogs = [
     [
         {
-            "dialog": "Hey It's you! I'm a big fan! Can I get an autograph?",
+            "dialog": "kysymys 1",
             "answers": [
                 ("Sorry, I can’t right now.", 1),
                 [("I’m kind of in a hurry. Just let’s do this quickly.", 0), ("Get out of my way!", -1)],
@@ -14,7 +14,7 @@ dialogs = [
     ],
     [
         {
-            "dialog": "Hey! My niece loves your music, can I have a picture to show them later?",
+            "dialog": "kysymys 2",
             "answers": [
                 ("I don’t have time for this!", 1),
                 ("Please, leave me alone", 0),
@@ -25,7 +25,7 @@ dialogs = [
     ],
     [
         {
-            "dialog": "Wow it's you! I love your music! Can we pleeeease take a picture?",
+            "dialog": "kysymys 3",
             "answers": [
                 ("I'm really sorry...", 1),
                 ("Some other time", 1),
@@ -36,7 +36,7 @@ dialogs = [
     ],
     [
         {
-            "dialog": "HEY IS THAT REALLY YOU OMGOMGOMGOMGOMG I’M A HUUUUUGE FAN?!?!?!?!?!",
+            "dialog": "kysymys 4",
             "answers": [
                 ("Go away!", 1),
                 ("I CAN’T", 0),

@@ -58,7 +58,7 @@ class Game:
                         self.load_pausemenu()
                     if event.key == pygame.K_TAB and self.state != "menu" and self.state != "info" and self.state != "ending":
                         randint = random.randint(1, 1000000)
-                        self.world.humans.append((randint, K_Car(self.game, [1100, TILE_SIZE[1]*0 + 200 + 30*random.random()], -1, randint)))
+                        self.world.humans.append((randint, K_Car(self, [1100, TILE_SIZE[1]*0 + 200 + 30*random.random()], -1, randint)))
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if self.state == "menu":
                         if mouse_pos[0] > 215 and mouse_pos[0] < 785:

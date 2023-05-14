@@ -39,7 +39,7 @@ class World:
                                 else: 
                                     randint = random.randint(1, 1000000)
                                     self.humans.append((randint, Car(self.game, car1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 200 + 30*random.random()], -1, randint)))
-                            if random.random() < 0.1:
+                            if random.random() < 0.2:
                                 if random.random() < 0.5:
                                     randint = random.randint(1, 1000000)
                                     self.humans.append((randint, Fan(self.game, fan1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 40 + 30*random.random()], randint)))
@@ -53,7 +53,7 @@ class World:
                                 self.humans.append((randint, Human(self.game, human1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 320 + 30*random.random()], random.choice([-1, 1]), randint)))
                                 randint = random.randint(1, 1000000)
                                 self.humans.append((randint, Car(self.game, car2_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 150 + 30*random.random()], 1, randint)))
-                            if random.random() < 0.1:
+                            if random.random() < 0.2:
                                 if random.random() < 0.5:
                                     randint = random.randint(1, 1000000)
                                     self.humans.append((randint, Fan(self.game, fan1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 40 + 30*random.random()], randint)))
@@ -73,29 +73,29 @@ class World:
                         if int(vertical_point[2]) < 7:
                             if random.random() < 0.0015:
                                 randint = random.randint(1, 1000000)
-                                self.humans.append((randint, Human(self.game, human1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 40 + 30*random.random()], random.choice([-1, 1]), randint)))
+                                self.humans.append((randint, Human(self.game, human1_tex, [TILE_SIZE[0]*x_pos + 100*random.random()-200, TILE_SIZE[1]*y_pos + 40 + 30*random.random()], random.choice([-1, 1]), randint)))
                             if random.random() < 0.0005:
                                 if random.random() < 0.5:
                                     randint = random.randint(1, 1000000)
-                                    self.humans.append((randint, Fan(self.game, fan1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 40 + 30*random.random()], randint)))
+                                    self.humans.append((randint, Fan(self.game, fan1_tex, [TILE_SIZE[0]*x_pos + 100*random.random()-200, TILE_SIZE[1]*y_pos + 40 + 30*random.random()], randint)))
                                 else:
                                     randint = random.randint(1, 1000000)
-                                    self.humans.append((randint, Fan(self.game, fan2_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 40 + 30*random.random()], randint)))
+                                    self.humans.append((randint, Fan(self.game, fan2_tex, [TILE_SIZE[0]*x_pos + 100*random.random() -200, TILE_SIZE[1]*y_pos + 40 + 30*random.random()], randint)))
 
                         else:
                             if random.random() < 0.0015:
                                 randint = random.randint(1, 1000000)
-                                self.humans.append((randint, Human(self.game, human1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 320 + 30*random.random()], random.choice([-1, 1]), randint)))
+                                self.humans.append((randint, Human(self.game, human1_tex, [TILE_SIZE[0]*x_pos + 100*random.random()-200, TILE_SIZE[1]*y_pos + 320 + 30*random.random()], random.choice([-1, 1]), randint)))
                             if random.random() < 0.005:
                                 randint = random.randint(1, 1000000)
-                                self.humans.append((randint, Car(self.game, car2_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 150 + 30*random.random()], 1, randint)))
+                                self.humans.append((randint, Car(self.game, car2_tex, [TILE_SIZE[0]*x_pos + 100*random.random()-200, TILE_SIZE[1]*y_pos + 150 + 30*random.random()], 1, randint)))
                             if random.random() < 0.0005:
                                 if random.random() < 0.5:
                                     randint = random.randint(1, 1000000)
-                                    self.humans.append((randint, Fan(self.game, fan1_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 40 + 30*random.random()], randint)))
+                                    self.humans.append((randint, Fan(self.game, fan1_tex, [TILE_SIZE[0]*x_pos + 100*random.random()-200, TILE_SIZE[1]*y_pos + 40 + 30*random.random()], randint)))
                                 else:
                                     randint = random.randint(1, 1000000)
-                                    self.humans.append((randint, Fan(self.game, fan2_tex, [TILE_SIZE[0]*x_pos + 100*random.random(), TILE_SIZE[1]*y_pos + 320 + 30*random.random()], randint)))
+                                    self.humans.append((randint, Fan(self.game, fan2_tex, [TILE_SIZE[0]*x_pos + 100*random.random()-200, TILE_SIZE[1]*y_pos + 320 + 30*random.random()], randint)))
 
                         if vertical_point[0:2] == "sw" and x_pos == self.WORLD_SIZE[0]-TILE_SIZE[0]:
                             if random.random() < 0.0015:

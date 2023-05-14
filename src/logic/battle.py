@@ -26,13 +26,13 @@ class Battle:
 
         for _ in range(self.questions):
             if player.stress < 4 and len(dialogs[0]) > 0:
-                self.dialogs.append(dialogs[0].pop())
+                self.dialogs.append(dialogs[0][-1])#
             elif player.stress < 7 and len(dialogs[1]) > 0:
-                self.dialogs.append(dialogs[1].pop())
+                self.dialogs.append(dialogs[1][-1])#)
             elif player.stress < 10 and len(dialogs[2]) > 0:
-                self.dialogs.append(dialogs[2].pop())
+                self.dialogs.append(dialogs[2][-1])#.pop())
             elif len(dialogs[3]) > 0:
-                self.dialogs.append(dialogs[3].pop())
+                self.dialogs.append(dialogs[3][-1])#.pop())
             elif len(all) > 0:
                 chosen_dialog = choice(all)
                 self.dialogs.append(chosen_dialog)
