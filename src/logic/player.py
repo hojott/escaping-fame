@@ -24,7 +24,7 @@ class Player:
 
     def endTurn(self, stress: int):
         self.time += 0.5 + stress * 0.3
-        self.stress += stress
+        self.stress -= stress
         if self.stress < 1: self.stress = 1
         elif self.stress > 10: self.stress = 10
 
