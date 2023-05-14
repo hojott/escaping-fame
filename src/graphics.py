@@ -29,16 +29,16 @@ textbox = pygame.image.load("src/graphics/textbox.png")
 textbox = pygame.transform.scale(textbox, TEXTBOX_SIZE)
 textbox_small = pygame.transform.scale(textbox, SMALL_TEXTBOX_SIZE)
 
-player = pygame.image.load("src/graphics/start_game.png")
+player = pygame.image.load("src/graphics/mc.png")
 player = pygame.transform.scale(player, PLAYER_SIZE)
 
-human1_tex = pygame.image.load("src/graphics/exit.png")
+human1_tex = pygame.image.load("src/graphics/emmaeestiia.png")
 human1_tex = pygame.transform.scale(human1_tex, HUMAN_SIZE)
 
-car1_tex = pygame.image.load("src/graphics/exit.png")
+car1_tex = pygame.image.load("src/graphics/car.png")
 car1_tex = pygame.transform.scale(car1_tex, CAR_SIZE)
 
-fan1_tex = pygame.image.load("src/graphics/mainmenu.png")
+fan1_tex = pygame.image.load("src/graphics/emmaeestiia.png")
 fan1_tex = pygame.transform.scale(fan1_tex, HUMAN_SIZE)
 
 tiles = {}

@@ -16,7 +16,7 @@ class Game:
 
         self.screen: tuple = pygame.display.set_mode(SCREEN_SIZE)
 
-        pygame.display.set_caption("Tulevaisuuspeli")
+        pygame.display.set_caption("Escaping Fame")
 
         self.icon = pygame.image.load('src/graphics/start_game.png')
         pygame.display.set_icon(self.icon)
