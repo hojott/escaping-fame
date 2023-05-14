@@ -35,7 +35,7 @@ class Player:
         drawPlayer(self.game, self.pos_on_screen)
 
         if self.pos_on_map[0] > 9000:
-            self.game.loadEnding("good_ending")
+            self.game.load_ending("good_ending")
 
     def calculate_movement(self) -> list[float, float]:
         movement = [float, float]
@@ -102,13 +102,6 @@ class Player:
                 for human in self.game.world.humans:
                     human[1].pos_on_screen[1] -= movement[1]
                     human[1].bounding_box.update((human[1].pos_on_screen[0], human[1].pos_on_screen[1]-self.velocity[1]), HUMAN_SIZE)
-
-        if self.pos_on_map[1] + PLAYER_SIZE[1] > 1000:
-            self.pos_on_map[1] = 1000 - PLAYER_SIZE[1]
-        elif self.pos_on_map[0] < 0:
-            self.pos_on_map[0] = 1000
-        if self.pos_on_map[0] + PLAYER_SIZE[0] > 1000:
-            self.pos_on_map[0] = 1000 - PLAYER_SIZE[0]
 
     def input(self) -> None:
         keys = pygame.key.get_pressed()
