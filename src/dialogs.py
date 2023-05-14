@@ -5,10 +5,10 @@ dialogs = [
         {
             "dialog": "kysymys 1",
             "answers": [
-                ("hyvä vastaus", 1),
-                [("neutraali vastaus", 0), ("huono vastaus", -1)],
-                ("huono vastaus", -1),
-                ("huono vastaus", -1)
+                ("Sorry, I can’t right now.", 1),
+                [("I’m kind of in a hurry. Just let’s do this quickly.", 0), ("Get out of my way!", -1)],
+                ("No, I don’t have time for this!", -1),
+                ("*Ignore them*", -1)
             ]
         }
     ],
@@ -16,10 +16,10 @@ dialogs = [
         {
             "dialog": "kysymys 2",
             "answers": [
-                ("hyvä vastaus", 1),
-                ("neutraali vastaus", 0),
-                [("neutraali vastaus", 0), ("huono vastaus", -1)],
-                ("huono vastaus", -1)
+                ("I don’t have time for this!", 1),
+                ("Please, leave me alone", 0),
+                [("O-okay let’s just get this done quickly", 0), ("Get away from me", -1)],
+                ("Look at them like you saw a ghost", -1)
             ]
         },
     ],
@@ -27,10 +27,10 @@ dialogs = [
         {
             "dialog": "kysymys 3",
             "answers": [
-                ("hyvä vastaus", 1),
-                ("hyvä vastaus", 1),
-                ("neutraali vastaus", 0),
-                ("huono vastaus", -1)
+                ("I'm really sorry...", 1),
+                ("Some other time", 1),
+                ("I really dont have the time for this!", 0),
+                ("Touch grass", -1)
             ]
         },
     ],
@@ -38,10 +38,10 @@ dialogs = [
         {
             "dialog": "kysymys 4",
             "answers": [
-                ("hyvä vastaus", 1),
-                ("hyvä vastaus", 1),
-                ("neutraali vastaus", 0),
-                ("neutraali vastaus", 0)
+                ("Go away!", 1),
+                ("I CAN’T", 0),
+                ("break down and scream “AAAAAAAAAAAAAAAAAAAAAAAAAAA", -1),
+                ("...", 0)
             ]
         },
     ]
