@@ -32,14 +32,23 @@ textbox_small = pygame.transform.scale(textbox, SMALL_TEXTBOX_SIZE)
 player = pygame.image.load("src/graphics/mc.png")
 player = pygame.transform.scale(player, PLAYER_SIZE)
 
-human1_tex = pygame.image.load("src/graphics/en1.png")
+human1_tex = pygame.image.load("src/graphics/randdude.png")
 human1_tex = pygame.transform.scale(human1_tex, HUMAN_SIZE)
 
 car1_tex = pygame.image.load("src/graphics/car.png")
 car1_tex = pygame.transform.scale(car1_tex, CAR_SIZE)
 
+car2_tex = pygame.image.load("src/graphics/car_reversed.png")
+car2_tex = pygame.transform.scale(car2_tex, CAR_SIZE)
+
+kaarija_tex = pygame.image.load("src/graphics/kaarija.png")
+kaarija_tex = pygame.transform.scale(kaarija_tex, CAR_SIZE)
+
 fan1_tex = pygame.image.load("src/graphics/en1.png")
 fan1_tex = pygame.transform.scale(fan1_tex, HUMAN_SIZE)
+
+fan2_tex = pygame.image.load("src/graphics/en2.png")
+fan2_tex = pygame.transform.scale(fan2_tex, HUMAN_SIZE)
 
 tiles = {}
 """
@@ -60,8 +69,12 @@ stresspoint = pygame.image.load("src/graphics/stresspoint.png")
 joke_ending = pygame.image.load("src/graphics/jokeEnding.png")
 joke_ending = pygame.transform.scale(joke_ending, SCREEN_SIZE)
 
+kaarija_ending = pygame.image.load("src/graphics/kaarija_ending.png")
+kaarija_ending = pygame.transform.scale(kaarija_ending, SCREEN_SIZE)
+
 endings = {
-    "joke_ending": joke_ending
+    "joke_ending": joke_ending,
+    "kaarija_ending": kaarija_ending
 }
 
 def drawMenu(game):
