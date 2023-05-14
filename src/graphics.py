@@ -131,9 +131,10 @@ def drawUI(game, at_bottom = False):
     screen = game.screen
 
     alpha = 190
-    if game.player.pos_on_screen[0] + PLAYER_SIZE[0] < 900 and game.player.pos_on_screen[0] > 100:
-        if game.player.pos_on_screen[1] < 200:
-            alpha = 40
+    if at_bottom:
+        if game.player.pos_on_screen[0] + PLAYER_SIZE[0] < 900 and game.player.pos_on_screen[0] > 100:
+            if game.player.pos_on_screen[1] > 800:
+                alpha = 40
 
         stressbar.set_alpha(alpha)
         for i in range(game.player.stress):
@@ -159,10 +160,9 @@ def drawUI(game, at_bottom = False):
 
         timebar = pygame.Rect(240, 813, time * 26, 32)
         pygame.draw.rect(screen, (173, 216, 230, timebar_alpha), timebar)
-
     else:
         alpha = 190
-        if game.player.pos_on_screen[0] < 900 and game.player.pos_on_screen[0] > 100:
+        if game.player.pos_on_screen[0] + PLAYER_SIZE[0] < 900 and game.player.pos_on_screen[0] > 100:
             if game.player.pos_on_screen[1] < 200:
                 alpha = 40
 
