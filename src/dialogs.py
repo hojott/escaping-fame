@@ -56,6 +56,16 @@ texts = {
         "changed illegally, your only chance is today. “Alright, I gotta be there ",
         "in 10 minutes, or it’s all over, I won’t have much time to talk with fans”",
         "and you leave your apartment."
+    ],
+    "bad_ending": [
+        "You couldn’t make it in time and lost your only chance at a new life. You’re",
+        "going to be stuck on this path as an idol until all of the little privacy you",
+        "had left is gone. You go on to be rich and successful, but you don’t find it worth it"
+    ],
+    "good_ending": [
+        "You successfully chenged your identity, you can live your life in peace and quiet."
+        "Sometimes you hear people ask about the birthmark that you were recognized from as"
+        "an idol, but they just assume you are a huge fan of yourself."
     ]
 }
 
