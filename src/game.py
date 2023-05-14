@@ -92,7 +92,7 @@ class Game:
                 drawInfo(self)
 
             if self.paused:
-                drawPause(self)
+                drawPausemenu(self)
 
             pygame.display.flip()
             clock.tick(60)

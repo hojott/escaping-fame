@@ -85,7 +85,7 @@ def drawPause(game):
     
     screen.blit(pause_overlay, (0, 0))
 
-def drawPause(game):
+def drawPausemenu(game):
     bg = pygame.Rect(150, 490, 700, 100)
     pygame.draw.rect(game.screen, (255,255,204), bg)
     renderText("Game paused, esc to unpause.", (165, 500), game, True)
