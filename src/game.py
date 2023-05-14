@@ -40,31 +40,8 @@ class Game:
         while self.running:
             keys = pygame.key.get_pressed()
             mouse_pos = pygame.mouse.get_pos()
-            
-            # Drawing
-            if self.state == "menu":
-                drawMenu(self)
 
-                if keys[pygame.K_0]:
-                    self.start_battle()
-                if keys[pygame.K_q]:
-                    self.running = False
-
-            elif self.state == "battle":
-                drawBattle(self, self.battle)
-
-            elif self.state == "game":
-                drawUI(self, at_bottom=True)
-                self.world.tick()
-
-                self.player.tick()
-
-                if keys[pygame.K_ESCAPE]:
-                    self.load_menu()
-                if keys[pygame.K_0]:
-                    self.start_battle()
-            
-            elif self.state == "ending":
+            if self.state == "ending":
                 drawEnding(self, self.ending)
                 if keys[pygame.K_q]:
                     self.running = False
@@ -115,7 +92,7 @@ class Game:
                 else:
                     drawWorld(self, 0, self.world.position)
                     drawPlayer(self, self.player.pos_on_screen)
-                drawUI(self)
+                drawUI(self, at_bottom=True)
             elif self.state == "info":
                 drawInfo(self)
 
