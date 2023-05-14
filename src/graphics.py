@@ -30,7 +30,7 @@ textbox = pygame.image.load("src/graphics/textbox.png")
 textbox = pygame.transform.scale(textbox, TEXTBOX_SIZE)
 textbox_small = pygame.transform.scale(textbox, SMALL_TEXTBOX_SIZE)
 
-player = pygame.image.load("src/graphics/start_game.png")
+player = pygame.image.load("src/graphics/player.png")
 player = pygame.transform.scale(player, PLAYER_SIZE)
 
 human = pygame.image.load("src/graphics/exit.png")
@@ -110,7 +110,6 @@ def drawUI(game):
 def drawBattle(game, battle):
     screen = game.screen
 
-    screen.fill((255, 255, 0))
     screen.blit(mainCharacter_battle, (-80, 230))
     screen.blit(battle.enemy, (600, 100))
     screen.blit(textbox, (100, 780))
