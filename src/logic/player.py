@@ -30,6 +30,7 @@ class Player:
         self.input()
         self.inputnt()
         self.move_player()
+        drawPlayer(self.game, self.pos_on_screen)
     
     def calculate_movement(self) -> list[float, float]:
         movement = [float, float]

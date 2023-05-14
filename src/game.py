@@ -13,6 +13,7 @@ class Game:
 
         pygame.font.init()
         self.font = pygame.font.SysFont('Comic Sans MS', FONT_SIZE)
+        self.bigFont = pygame.font.SysFont('Comic Sans MS', FONT_SIZE * 2)
 
         self.screen: tuple = pygame.display.set_mode(SCREEN_SIZE)
 
@@ -77,16 +78,16 @@ class Game:
                 drawBattle(self, self.battle)
                 drawUI(self)
             elif self.state == "game":
-                drawWorld(self, 0, self.world.position)
-                drawPlayer(self, self.player.pos_on_screen)
-                drawUI(self)
-
                 if not self.paused:
                     self.world.tick()
                     self.player.tick()
                     
                     if keys[pygame.K_0]:
                         self.start_battle()
+                else:
+                    drawWorld(self, 0, self.world.position)
+                    drawPlayer(self, self.player.pos_on_screen)
+                drawUI(self)
             elif self.state == "info":
                 drawInfo(self)
 
