@@ -6,11 +6,17 @@ from math import floor
 exit = pygame.image.load("src/graphics/exit.png")
 exit = pygame.transform.scale(exit, BUTTON_SIZE)
 
+info = pygame.image.load("src/graphics/info.png")
+info = pygame.transform.scale(info, BUTTON_SIZE)
+
 start_game = pygame.image.load("src/graphics/start_game.png")
 start_game = pygame.transform.scale(start_game, BUTTON_SIZE)
 
 mainmenu = pygame.image.load("src/graphics/mainmenu.png")
 mainmenu = pygame.transform.scale(mainmenu, SCREEN_SIZE)
+
+intro = pygame.image.load("src/graphics/intro.png")
+intro = pygame.transform.scale(intro, SCREEN_SIZE)
 
 mainCharacter_battle = pygame.image.load("src/graphics/mainCharacter_battle.png")
 mainCharacter_battle = pygame.transform.scale(mainCharacter_battle, CHARACTER_SIZE)
@@ -60,8 +66,15 @@ def drawMenu(game):
     screen = game.screen
     
     screen.blit(mainmenu, (0, 0))
-    screen.blit(start_game, (215, 350))
-    screen.blit(exit, (215, 500))
+    screen.blit(start_game, (215, 270))
+    screen.blit(info, (215, 420))
+    screen.blit(exit, (215, 570))
+
+def drawInfo(game):
+    screen = game.screen
+
+    screen.blit(intro, (0, 0))
+    renderText("Go brr before time goes brr", (0, 0), game)
 
 def drawPause(game):
     screen = game.screen
