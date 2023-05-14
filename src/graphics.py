@@ -95,10 +95,10 @@ def drawPausemenu(game):
 def drawUI(game):
     screen = game.screen
 
-    alpha = 255
-    if game.player.pos_on_screen[0] < 900 and game.player.pos_on_screen[0] > 100:
+    alpha = 190
+    if game.player.pos_on_screen[0] + PLAYER_SIZE[0] < 900 and game.player.pos_on_screen[0] > 100:
         if game.player.pos_on_screen[1] < 200:
-            alpha = 80
+            alpha = 40
 
     stressbar.set_alpha(alpha)
     for i in range(game.player.stress):
