@@ -67,7 +67,7 @@ class Player:
                 self.game.world.position[0] += movement[0]
                 for human in self.game.world.humans:
                     human[1].pos_on_screen[0] -= movement[0]
-                    human[1].bounding_box.update((human[1].pos_on_screen[0]-self.velocity[0], human[1].pos_on_screen[1]), HUMAN_SIZE)
+                    human[1].bounding_box.update((human[1].pos_on_screen[0]-self.velocity[0], human[1].pos_on_screen[1]), human[1].SIZE)
             
         if movement[0] <= 0:
             if self.game.world.position[0] <= 0 or self.pos_on_screen[0] > 475:
@@ -78,7 +78,7 @@ class Player:
                 self.game.world.position[0] += movement[0]
                 for human in self.game.world.humans:
                     human[1].pos_on_screen[0] -= movement[0]
-                    human[1].bounding_box.update((human[1].pos_on_screen[0]-self.velocity[0], human[1].pos_on_screen[1]), HUMAN_SIZE)
+                    human[1].bounding_box.update((human[1].pos_on_screen[0]-self.velocity[0], human[1].pos_on_screen[1]), human[1].SIZE)
 
         # Vertical movement
         if movement[1] >= 0:
@@ -90,7 +90,7 @@ class Player:
                 self.game.world.position[1] += movement[1]
                 for human in self.game.world.humans:
                     human[1].pos_on_screen[1] -= movement[1]
-                    human[1].bounding_box.update((human[1].pos_on_screen[0], human[1].pos_on_screen[1]-self.velocity[1]), HUMAN_SIZE)
+                    human[1].bounding_box.update((human[1].pos_on_screen[0], human[1].pos_on_screen[1]-self.velocity[1]), human[1].SIZE)
         
         if movement[1] <= 0:
             if self.game.world.position[1] <= 0 or self.pos_on_screen[1] > 475:
@@ -100,6 +100,8 @@ class Player:
                 self.pos_on_map[1] += movement[1]
                 self.game.world.position[1] += movement[1]
                 for human in self.game.world.humans:
+                    human[1].pos_on_screen[1] -= movement[1]
+                    human[1].bounding_box.update((human[1].pos_on_screen[0], human[1].pos_on_screen[1]-self.velocity[1]), human[1].SIZE)
                     human.pos_on_screen[1] -= movement[1]
                     human.bounding_box.update((human.pos_on_screen[0], human.pos_on_screen[1]-self.velocity[1]), HUMAN_SIZE)
         if self.pos_on_screen[0] + PLAYER_SIZE[0] > 1000:

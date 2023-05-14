@@ -14,7 +14,8 @@ class Human:
         self.id = id
 
         self.velocity = self.direction * (HUMAN_VELOCITY + (random.random() - 0.5))
-        self.bounding_box = pygame.draw.rect(self.game.screen, 0, (self.pos_on_screen, HUMAN_SIZE))
+        self.SIZE = HUMAN_SIZE
+        self.bounding_box = pygame.draw.rect(self.game.screen, 0, (self.pos_on_screen, self.SIZE))
 
         drawHuman(self.game, self.pos_on_map, self.texture)
 
@@ -25,7 +26,7 @@ class Human:
 
     def move(self):
         self.pos_on_map[0] += self.velocity
-        self.bounding_box.update((self.pos_on_screen[0]+self.velocity, self.pos_on_screen[1]), HUMAN_SIZE)
+        self.bounding_box.update((self.pos_on_screen[0]+self.velocity, self.pos_on_screen[1]), self.SIZE)
     
     def check_collide(self):
         pass
@@ -37,7 +38,8 @@ class Car(Human):
     def __init__(self, game, texture, pos_on_map: list[int, int], direction: int, id):
         super().__init__(game, texture, pos_on_map, direction, id)
         self.velocity = self.direction * (CAR_VELOCITY + (random.random() - 0.5))
-        self.bounding_box = pygame.draw.rect(self.game.screen, 0, (self.pos_on_screen, CAR_SIZE))
+        self.SIZE = CAR_SIZE
+        self.bounding_box = pygame.draw.rect(self.game.screen, 0, (self.pos_on_screen, self.SIZE))
     
     def check_collide(self):
         if self.bounding_box.colliderect(self.game.player.bounding_box):
@@ -54,7 +56,8 @@ class K_Car(Car):
 class Fan(Human):
     def __init__(self, game, texture, pos_on_map: list[int, int], id):
         super().__init__(game, texture, pos_on_map, -1, id)
-        self.bounding_box = pygame.draw.rect(self.game.screen, 0, (self.pos_on_screen, FAN_SIZE))
+        self.SIZE = FAN_SIZE
+        self.bounding_box = pygame.draw.rect(self.game.screen, 0, (self.pos_on_screen, self.SIZE))
     
     def check_collide(self):
         if self.bounding_box.colliderect(self.game.player.bounding_box):
@@ -63,3 +66,7 @@ class Fan(Human):
                 if id[0] == self.id:
                     self.game.world.humans.pop(i)
                     break
+    
+    def move(self):
+        self.pos_on_map[0] += self.velocity
+        self.bounding_box.update((self.pos_on_screen[0]+self.velocity, self.pos_on_screen[1]), self.SIZE)
