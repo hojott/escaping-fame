@@ -72,6 +72,11 @@ def drawPause(game):
     
     screen.blit(pause_overlay, (0, 0))
 
+def drawPause(game):
+    bg = pygame.Rect(150, 490, 700, 100)
+    pygame.draw.rect(game.screen, (255,255,204), bg)
+    renderText("Game paused, esc to unpause.", (165, 500), game, True)
+
 def drawUI(game):
     screen = game.screen
 
@@ -80,12 +85,12 @@ def drawUI(game):
         if game.player.pos_on_screen[1] < 200:
             alpha = 80
 
-    stressbar.set_alpha(alpha)  # Set the alpha value of the stress bar
+    stressbar.set_alpha(alpha)
     for i in range(game.player.stress):
-        stresspoint.set_alpha(alpha)  # Set the alpha value of each stress point
+        stresspoint.set_alpha(alpha)
 
     time = game.player.time
-    timebar_alpha = alpha if time > 0 else 0  # Set the alpha value of the time bar based on 'time' variable
+    timebar_alpha = alpha if time > 0 else 0
 
     screen.blit(stressbar.convert_alpha(), (169, 30))
     stress = game.player.stress
@@ -123,6 +128,7 @@ def drawBattle(game, battle):
             coords = (250, 200 + 120 * i)
             screen.blit(textbox_small, coords)
             renderText(dialog["answers"][i][0], (275, 232 + 120 * i), game)
+            renderText("Choose your answer...", (620, 900), game)
     else:
         renderText("Click to continue...", (640, 900), game)
     if battle.turn % 3 != 2:
@@ -134,8 +140,11 @@ def drawBattle(game, battle):
     else:
         renderText("Your pick good, so your stress relieves.", (160, 820), game)
 
-def renderText(text, coords, game):
-    text = game.font.render(text, False, (0, 0, 0))
+def renderText(text, coords, game, bigFont = False):
+    if bigFont:
+        text = game.bigFont.render(text, False, (0, 0, 0))
+    else:
+        text = game.font.render(text, False, (0, 0, 0))
     game.screen.blit(text, coords)
 
 def drawWorld(game, map_num: int, world_pos: list) -> list[int, int]:
