@@ -10,7 +10,7 @@ class Battle:
         self.game = game
         self.textbox_rects = [pygame.Rect(250, 200 + 120 * i, textbox_small.get_width(), textbox_small.get_height()) for i in range(4)]
         self.turn = 0
-        self.questions = randint(3, 4)
+        self.questions = 2
         self.dialogs = []
         self.player_pick = None
         self.enemy = enemies[randint(0, 2)]
